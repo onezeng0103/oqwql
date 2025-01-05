@@ -1,0 +1,19 @@
+@font-face {
+  font-family: fuiFont;
+  src: url('../fui-icon-D7orQT4U.ttf') format('truetype');
+}
+.fui-icon {
+  font-family: fuiFont;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+.fui-icon__color {
+  color: var(--fui-color-section, #333333) !important;
+}
+.fui-icon__active-color {
+  color: var(--fui-color-primary, #465cff) !important;
+}
+.fui-icon__not-allowed {
+  cursor: not-allowed !important;
+}

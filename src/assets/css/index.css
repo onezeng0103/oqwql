@@ -1,0 +1,30 @@
+@import './alert-CrVt_B0t.css';
+@import './antd-18af7d1d.css';
+@import './font_4181413_3437kkug36u.css';
+@import './fui-avatar-CvV30rDa.css';
+@import './fui-backdrop-D3TE4cmM.css';
+@import './fui-bottom-popup-C0CpF_g1.css';
+@import './fui-button-I_hS5M3J.css';
+@import './fui-icon-BtzrKq7d.css';
+@import './fui-nav-bar-DMgSTjUi.css';
+@import './fui-tabs-CJPsJVo3.css';
+@import './iconfont.css';
+@import './index-5ca11545.css';
+@import './index-CxO8nJ6o.css';
+@import './newindex-OyZMm52t.css';
+@import './pictureInPicture-ddef426b.css';
+@import './uni-drawer-B5HqcKg4.css';
+@import './uni-popup-dialog-1Os_aRzI.css';
+@import './uni-popup-DP4YL--h.css';
+@import './uni.6449fbce.css';
+@import './login-Cf2oJTNm.css';
+@import './areacode-BCpa3Dod.css';
+@import './authPop-DDDpAnrE.css';
+@import './forget-BRRmv0Gs.css';
+@import './setpwd-BVsimRFy.css';
+.van-popup {
+  background-color: #000 !important;
+}
+.van-count-down {
+  color: #fff !important;
+}

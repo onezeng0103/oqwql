@@ -1,0 +1,103 @@
+.forget {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--white);
+}
+.forget .body-wrap {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+}
+.forget .body-wrap .login-mode {
+  width: 100%;
+  height: 2.125rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  background-color: var(--background-secondary);
+  display: flex;
+  align-items: center;
+}
+.forget .body-wrap .login-mode .item {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forget .body-wrap .login-mode .item uni-text {
+  font-size: 0.875rem;
+  color: var(--content-tertiary);
+}
+.forget .body-wrap .login-mode .active {
+  background-color: var(--background-primary);
+}
+.forget .body-wrap .login-mode .active uni-text {
+  color: var(--content-primary);
+  font-weight: 500;
+}
+.forget .body-wrap .login-label {
+  margin-top: 1.5625rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.forget .body-wrap .login-label .input-box {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+  background-color: var(--background-secondary);
+  border: 0.0625rem solid var(--background-secondary);
+  display: flex;
+  align-items: center;
+  transition: all 0.15s linear;
+}
+.forget .body-wrap .login-label .input-box uni-input {
+  width: 100%;
+  height: 2.4375rem;
+  line-height: 2.4375rem;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--content-primary);
+}
+.forget .body-wrap .login-label .input-box:focus-within {
+  border-color: var(--color-primary);
+}
+.forget .body-wrap .login-label .input-box[type='phone'] .area-code {
+  max-width: 20%;
+  height: 2.4375rem;
+  display: flex;
+  align-items: center;
+  padding-right: 0.3125rem;
+  position: relative;
+}
+.forget .body-wrap .login-label .input-box[type='phone'] .area-code:after {
+  content: '';
+  display: inline-block;
+  width: 0.03125rem;
+  height: 0.9375rem;
+  background-color: var(--border-strength-100);
+  position: absolute;
+  right: 0;
+}
+.forget .body-wrap .login-label .input-box[type='phone'] .area-code .fui-icon {
+  margin-left: 0.15625rem;
+}
+.forget .body-wrap .login-label .input-box[type='phone'] uni-input {
+  min-width: calc(80% - 0.3125rem);
+  width: 82%;
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+}
+.forget .body-wrap .button-box {
+  width: 100%;
+  height: auto;
+  margin-top: 2.1875rem;
+}

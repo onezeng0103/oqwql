@@ -1,0 +1,25 @@
+.uni-popup-dialog {
+  background: var(--background-primary);
+}
+.uni-dialog-title-text {
+  color: var(--content-primary);
+  font-size: 1rem;
+}
+.uni-dialog-content-text {
+  color: var(--content-tertiary);
+  font-size: 0.8125rem;
+}
+.uni-dialog-button-group,
+.uni-dialog-button-group .uni-border-left {
+  border-color: var(--border-strength-100);
+}
+.uni-dialog-button-group
+  .uni-dialog-button:nth-of-type(1)
+  .uni-dialog-button-text {
+  color: var(--content-tertiary);
+}
+.uni-dialog-button-group
+  .uni-dialog-button:nth-of-type(2)
+  .uni-dialog-button-text {
+  color: var(--color-primary);
+}
