@@ -24,9 +24,24 @@ const router = createRouter({
       component: () => import('../views/forget/index.vue')
     },
     {
-      path:'/setpwd',
-      name:'setpwd',
+      path: '/setpwd',
+      name: 'setpwd',
       component: () => import('../views/setpwd/index.vue')
+    },
+    {
+      path: '/invaite',
+      name: 'invaite',
+      component: () => import('../views/invaite/index.vue')
+    },
+    {
+      path: '/secrety',
+      name: 'secrety',
+      component: () => import('../views/secrety/index.vue')
+    },
+    {
+      path: '/langList',
+      name: 'langList',
+      component: () => import('../views/langList/index.vue')
     }
   ]
 })

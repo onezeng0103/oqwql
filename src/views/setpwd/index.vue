@@ -1,5 +1,5 @@
 <template>
-  <uni-view class="setPassword" data-theme="dark"
+  <uni-view class="setPassword"
     ><uni-view style="height: 44px"
       ><uni-view
         class="fui-nav__bar fui-nav__bar-fixed"

@@ -1,5 +1,5 @@
 <template>
-  <uni-view class="login" data-theme="dark"
+  <uni-view class="login"
     ><uni-view class="login-top"
       ><uni-text
         @click="router.back()"

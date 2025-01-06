@@ -1,5 +1,5 @@
 <template>
-  <uni-view id="home" class="home" data-theme="dark">
+  <uni-view id="home" class="home">
     <uni-view style="height: 44px">
       <uni-view
         class="fui-nav__bar fui-nav__bar-fixed"
@@ -24,7 +24,7 @@
                   height: 1.9375rem;
                 "
               >
-                <div style="width: 1.9375rem; height: 1.9375rem">
+                <div style="width: 1.9375rem; height: 1.9375rem" @click="showLeft = true">
                   <img :src="path" width="100%" height="100%" draggable="false" />
                 </div>
               </uni-view>
@@ -45,14 +45,14 @@
                 <img
                   width="100%"
                   height="100%"
-                  src="/static/newImage/customer-dark.png"
+                  src="../../assets/img/customer-dark.png"
                   draggable="false"
                 /> </uni-view
               ><uni-view class="bar-button">
                 <img
                   width="100%"
                   height="100%"
-                  src="/static/newImage/notify-dark.png"
+                  src="../../assets/img/notify-dark.png"
                   draggable="false" /></uni-view></uni-view></uni-view></uni-view></uni-view></uni-view
     ><uni-view class="page_main"
       ><uni-view class="property"
@@ -107,7 +107,7 @@
           ><uni-image
             ><div
               style="
-                background-image: url('/static/img/bg-aHsi6WdP.png');
+                background-image: url('../../assets/img/bg-aHsi6WdP.png');
                 background-position: 0% 0%;
                 background-size: 100% 100%;
               "
@@ -116,74 +116,42 @@
             ><img
               width="100%"
               height="100%"
-              src="/static/img/bg-aHsi6WdP.png"
+              src="../../assets/img/bg-aHsi6WdP.png"
               draggable="false" /></uni-image
         ></uni-view>
       </uni-view>
       <uni-view class="menu"
         ><uni-view class="menu_item"
-          ><uni-view class="imgBox"
-            ><uni-image>
-              <div
-                style="
-                  background-image: url('/static/newImage/invite-white.png');
-                  background-position: 0% 0%;
-                  background-size: 100% 100%;
-                "
-              ></div>
-              <span></span
-              ><img
-                src="/static/newImage/invite-white.png"
-                draggable="false"
-              /> </uni-image></uni-view
+          ><uni-view class="imgBox">
+            <img
+              style="width: 1.875rem; height: 1.875rem"
+              src="../../assets/img/invite-white.png"
+              draggable="false"
+            /> </uni-view
           ><uni-text class="font-13 color-dark"><span>邀请好友</span></uni-text></uni-view
-        ><uni-view class="menu_item"
-          ><uni-view class="imgBox"
-            ><uni-image>
-              <div
-                style="
-                  background-image: url('/static/newImage/flashExchange.png');
-                  background-position: 0% 0%;
-                  background-size: 100% 100%;
-                "
-              ></div>
-              <span></span
-              ><img
-                src="/static/newImage/flashExchange.png"
-                draggable="false"
-              /> </uni-image></uni-view
+        ><uni-view class="menu_item">
+          <uni-view class="imgBox">
+            <img
+              style="width: 1.875rem; height: 1.875rem"
+              src="../../assets/img/flashExchange.png"
+              draggable="false"
+            /> </uni-view
           ><uni-text class="font-13 color-dark"><span>闪兑</span></uni-text></uni-view
         ><uni-view class="menu_item"
-          ><uni-view class="imgBox"
-            ><uni-image>
-              <div
-                style="
-                  background-image: url('/static/newImage/recharge-dark.png');
-                  background-position: 0% 0%;
-                  background-size: 100% 100%;
-                "
-              ></div>
-              <span></span
-              ><img
-                src="/static/newImage/recharge-dark.png"
-                draggable="false"
-              /> </uni-image></uni-view
+          ><uni-view class="imgBox">
+            <img
+              style="width: 1.875rem; height: 1.875rem"
+              src="../../assets/img/recharge-dark.png"
+              draggable="false"
+            /> </uni-view
           ><uni-text class="font-13 color-dark"><span>储值</span></uni-text></uni-view
         ><uni-view class="menu_item"
-          ><uni-view class="imgBox"
-            ><uni-image>
-              <div
-                style="
-                  background-image: url('/static/newImage/menu-white.png');
-                  background-position: 0% 0%;
-                  background-size: 100% 100%;
-                "
-              ></div>
-              <span></span
-              ><img
-                src="/static/newImage/menu-white.png"
-                draggable="false"
-              /> </uni-image></uni-view
+          ><uni-view class="imgBox">
+            <img
+              style="width: 1.875rem; height: 1.875rem"
+              src="../../assets/img/menu-white.png"
+              draggable="false"
+            /> </uni-view
           ><uni-text class="font-13 color-dark"><span>更多</span></uni-text></uni-view
         ></uni-view
       ><uni-view class="swiper_wrap"
@@ -261,13 +229,13 @@
           ><uni-image>
             <div
               style="
-                background-image: url('/static/newImage/notice-dark.png');
+                background-image: url('../../assets/img/notice-dark.png');
                 background-position: 0% 0%;
                 background-size: 100% 100%;
               "
             ></div>
             <span></span
-            ><img src="/static/newImage/notice-dark.png" draggable="false" /> </uni-image
+            ><img src="../../assets/img/notice-dark.png" draggable="false" /> </uni-image
           ><uni-swiper class="ntSwiper">
             <div class="uni-swiper-wrapper">
               <div class="uni-swiper-slides">
@@ -278,14 +246,14 @@
           ><uni-image>
             <div
               style="
-                background-image: url('/static/newImage/more1-dark.png');
+                background-image: url('../../assets/img/more1-dark.png');
                 background-position: 0% 0%;
                 background-size: 100% 100%;
               "
             ></div>
             <span></span
             ><img
-              src="/static/newImage/more1-dark.png"
+              src="../../assets/img/more1-dark.png"
               draggable="false"
             /> </uni-image></uni-view></uni-view
       ><uni-view class="content_wrap"
@@ -564,7 +532,6 @@
               ></uni-view
             ></uni-view
           ><uni-view class="list"></uni-view></uni-view></uni-view></uni-view
-    ><uni-view data-theme="dark"></uni-view
     ><uni-view
       class="fui-backdrop__wrap fui-backdrop__bg"
       style="position: fixed; z-index: 999"
@@ -592,7 +559,7 @@
               ><uni-image class="tip-icon" style="height: 14px">
                 <div
                   style="
-                    background-image: url('/static/newImage/safe-dark.png');
+                    background-image: url('../../assets/img/safe-dark.png');
                     background-size: 100% 100%;
                   "
                 ></div>
@@ -603,7 +570,7 @@
                   <div>
                     <div></div>
                   </div> </uni-resize-sensor
-                ><img src="/static/newImage/safe-dark.png" draggable="false" /> </uni-image
+                ><img src="../../assets/img/safe-dark.png" draggable="false" /> </uni-image
               ><uni-text class="font-12 price_up tip-text"
                 ><span>您充值的资产将由CoinEx风险保护基金提供保障</span></uni-text
               ></uni-view
@@ -613,7 +580,7 @@
               ><uni-image class="card-icon" style="height: 28px">
                 <div
                   style="
-                    background-image: url('/static/newImage/recharge-dark.png');
+                    background-image: url('../../assets/img/recharge-dark.png');
                     background-size: 100% 100%;
                   "
                 ></div>
@@ -624,7 +591,7 @@
                   <div>
                     <div></div>
                   </div> </uni-resize-sensor
-                ><img src="/static/newImage/recharge-dark.png" draggable="false" /> </uni-image
+                ><img src="../../assets/img/recharge-dark.png" draggable="false" /> </uni-image
               ><uni-view class="card-info"
                 ><uni-text class="font-14 color-black font-weight"><span>储值</span></uni-text
                 ><uni-text class="font-11 color-gray desc"
@@ -637,14 +604,20 @@
       ></uni-view
     ></uni-view
   >
+  <LeftPopup :showLeft="showLeft" @close="close" />
 </template>
 <script setup>
 import { useMainStore } from '@/store/index.js'
 import { useRouter } from 'vue-router'
+import LeftPopup from './component/leftPopup.vue'
 const router = useRouter()
 const mainStore = useMainStore()
 const path = computed(() => {
   let tempPath = mainStore.getLogoList?.logo || mainStore.getLogoList?.logoD
   return tempPath
 })
+const showLeft = ref(false)
+const close = () => {
+  showLeft.value = false
+}
 </script>

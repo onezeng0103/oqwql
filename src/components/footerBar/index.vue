@@ -8,7 +8,7 @@
       <div class="uni-tabbar__item">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
-            <img src="/static/statbar/new/home-s.png" />
+            <img src="../../assets/img/home-s.png" />
           </div>
           <div
             class="uni-tabbar__label"
@@ -21,7 +21,7 @@
       <div class="uni-tabbar__item">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
-            <img src="/static/statbar/new/market-d.png" />
+            <img src="../../assets/img/market-d.png" />
           </div>
           <div
             class="uni-tabbar__label"
@@ -34,7 +34,7 @@
       <div class="uni-tabbar__item">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
-            <img src="/static/statbar/new/trade-d.png" />
+            <img src="../../assets/img/trade-d.png" />
           </div>
           <div
             class="uni-tabbar__label"
@@ -47,7 +47,7 @@
       <div class="uni-tabbar__item">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
-            <img src="/static/statbar/new/contract-d.png" />
+            <img src="../../assets/img/contract-d.png" />
           </div>
           <div
             class="uni-tabbar__label"
@@ -60,7 +60,7 @@
       <div class="uni-tabbar__item">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
-            <img src="/static/statbar/new/asset-d.png" />
+            <img src="../../assets/img/asset-d.png" />
           </div>
           <div
             class="uni-tabbar__label"

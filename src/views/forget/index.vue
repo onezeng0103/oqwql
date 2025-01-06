@@ -1,5 +1,5 @@
 <template>
-  <uni-view class="forget" data-theme="dark"
+  <uni-view class="forget"
     ><uni-view style="height: 44px"
       ><uni-view
         class="fui-nav__bar fui-nav__bar-fixed"
@@ -14,7 +14,7 @@
         ><uni-view class="fui-nav__header"
           ><uni-view class="fui-nav__left"
             ><uni-text
-              @click="router.back()"  
+              @click="router.back()"
               class="fui-icon"
               style="color: var(--black); font-size: 1.75rem; font-weight: normal"
               ><span></span></uni-text
@@ -76,7 +76,7 @@
     ></uni-view
   >
   <van-popup v-model:show="showBottom" position="bottom">
-    <uni-view class="authPanel" data-theme="dark">
+    <uni-view class="authPanel">
       <uni-view class="authPanel-conbox"
         ><uni-view class="title"
           ><uni-text class="font-16 font-weight color-black"><span>安全验证</span></uni-text
