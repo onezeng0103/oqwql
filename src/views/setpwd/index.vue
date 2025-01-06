@@ -142,7 +142,6 @@ const rules = ref([0, 0, 0])
 const isPwd = ref(true)
 const isPwd2 = ref(true)
 const handleInputChange = (e) => {
-  console.log(e.target.value)
   if (e.target.value.length >= 8 && e.target.value.length <= 14) {
     rules.value[0] = 1
   }
@@ -154,7 +153,6 @@ const handleInputChange = (e) => {
   }
 }
 const submit = () => {
-  console.log(route.query.email)
   let flag = rules.value.every((item) => item === 1)
   if (password.value !== password2.value) {
     showToast('两次密码不一致')

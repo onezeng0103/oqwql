@@ -1,0 +1,125 @@
+.baseAuth {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--white);
+}
+.baseAuth-container {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem 0.9375rem 6.25rem;
+  box-sizing: border-box;
+}
+.baseAuth-container .label {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+.baseAuth-container .label-box {
+  width: 100%;
+  height: 2.75rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-gray-bg);
+  border: 0.0625rem solid var(--color-gray-bg);
+}
+.baseAuth-container .label-box:focus-within {
+  border-color: var(--blue);
+}
+.baseAuth-container .label-box .down-icon {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+.baseAuth-container .label-box uni-input {
+  width: 100%;
+  height: 2.625rem;
+  font-size: 0.8125rem;
+  color: var(--black);
+}
+.baseAuth-container .upload-label {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  background: var(--color-gray-bg);
+  border-radius: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.baseAuth-container .upload-label .upload-image {
+  width: 12.5rem;
+  height: 7.5rem;
+  margin-top: 0.9375rem;
+}
+.baseAuth-container .upload-tips {
+  width: 100%;
+  height: auto;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+.baseAuth .footer-button {
+  width: 100%;
+  height: auto;
+  padding: 0.625rem 0.9375rem;
+  box-sizing: border-box;
+  background: var(--white);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.baseAuth .footer-button ._button {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  background: var(--color-button-defalut-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-popup {
+  width: 100%;
+  height: auto;
+  padding-bottom: 0.9375rem;
+  box-sizing: border-box;
+  background: var(--white);
+}
+.card-popup .list {
+  width: 100%;
+  height: auto;
+  background: var(--white);
+  border-bottom: 0.5rem solid var(--color-gray-bg);
+}
+.card-popup .list ._row {
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.0625rem solid var(--color-gray-bg);
+}
+.card-popup .list ._row:last-of-type {
+  border: none;
+}
+.card-popup .list ._row:active {
+  background: var(--color-gray-bg);
+}
+.card-popup .cancel-button {
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-popup .cancel-button:active {
+  background: var(--color-gray-bg);
+}

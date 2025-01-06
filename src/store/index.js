@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { storageDict } from '@/config/dict'
+import { setLanguage } from '@/locales/index.js'
+
 import { getPlatFormConfigApi, getSettingConfigApi } from '@/api/common/index.js'
 import { TIMEZONE_DICT } from '@/config/index'
 import { getUserRechageNewApi } from '@/api/account'
@@ -138,9 +140,6 @@ export const useMainStore = defineStore('main', {
         this.settingConfig = res.data
         this.setTimeZone()
         this.getLanguageList()
-        // if (res.data.PLAYING_SETTING[0].name == '自选') {
-        //   this.hasOption = res.data.PLAYING_SETTING[0].isOpen
-        // }
         this.hasOption = true
       }
     },
@@ -157,6 +156,7 @@ export const useMainStore = defineStore('main', {
         this.hasCollectCoin = list
       }
     },
+
     /**
      * 获取用户定制地址 防抖执行
      */
@@ -209,6 +209,13 @@ export const useMainStore = defineStore('main', {
         this.platFormConfig = dynamicFunction()
       } catch (error) {
         console.log(error)
+      }
+    },
+    setLanguage(language) {
+      if (this.language != language) {
+        this.language = language
+        localStorage.setItem(storageDict.LANGUAGE, language)
+        setLanguage(language)
       }
     },
     /**

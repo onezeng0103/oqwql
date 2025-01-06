@@ -26,7 +26,9 @@
               ><span>邀请好友</span></uni-text
             ></uni-view
           ><uni-view class="fui-nav__right"
-            ><uni-text class="font-13 font-weight always-white mr-10"
+            ><uni-text
+              @click="router.push('/invaite/rules')"
+              class="font-13 font-weight always-white mr-10"
               ><span>规则</span></uni-text
             ></uni-view
           ></uni-view
@@ -45,45 +47,37 @@
                   ><uni-view class="content-title"
                     ><uni-text class="font-14 color-black font-weight"
                       ><span>邀请返佣</span></uni-text
-                    ><uni-view class="flex align-center"
-                      ><uni-text class="font-12 color-gray"><span>设定邀请链接</span></uni-text
-                      ><uni-text
-                        class="fui-icon"
-                        style="
-                          color: var(--content-primary);
-                          font-size: 0.9375rem;
-                          font-weight: normal;
-                        "
-                        ><span></span></uni-text
-                      ></uni-view
                     ></uni-view
                   ><uni-view class="content-column"
                     ><uni-view class="content-column-item"
-                      ><uni-text class="font-12 color-gray"><span>我的现货返佣</span></uni-text
+                      ><uni-text class="font-12 color-gray"><span>昨日注册</span></uni-text
                       ><uni-text class="font-18 color-black font-weight"
-                        ><span>1% </span></uni-text
+                        ><span>{{ agentInfo.yesterdayCount || 0 }}</span></uni-text
                       ></uni-view
                     ><uni-view class="content-column-item"
-                      ><uni-text class="font-12 color-gray"><span>好友现货返现</span></uni-text
+                      ><uni-text class="font-12 color-gray"><span>今日注册</span></uni-text
                       ><uni-text class="font-18 color-black font-weight"
-                        ><span>--% </span></uni-text
+                        ><span>{{ agentInfo.todayCount || 0 }}</span></uni-text
                       ></uni-view
                     ><uni-view class="content-column-item"
-                      ><uni-text class="font-12 color-gray"><span>我的合约返佣</span></uni-text
+                      ><uni-text class="font-12 color-gray"><span>直属下级</span></uni-text
                       ><uni-text class="font-18 color-black font-weight"
-                        ><span>2% </span></uni-text
+                        ><span>{{ agentInfo.childCount || 0 }}</span></uni-text
                       ></uni-view
                     ><uni-view class="content-column-item"
-                      ><uni-text class="font-12 color-gray"><span>好友合约返现</span></uni-text
+                      ><uni-text class="font-12 color-gray"><span>下级人数</span></uni-text
                       ><uni-text class="font-18 color-black font-weight"
-                        ><span>--% </span></uni-text
+                        ><span>{{ agentInfo.childAllCount || 0 }}</span></uni-text
                       ></uni-view
                     ></uni-view
                   ><uni-view class="content-cell"
                     ><uni-text class="font-13 color-gray"><span>邀请码</span></uni-text
                     ><uni-view class="flex align-center"
-                      ><uni-text class="font-13 color-black"><span>qb89VBxH</span></uni-text>
+                      ><uni-text class="font-13 color-black"
+                        ><span>{{ userInfo?.user?.activeCode }}</span></uni-text
+                      >
                       <img
+                        @click="toCopy(userInfo?.user?.activeCode)"
                         class="copy-icon"
                         style="height: 20px"
                         src="../../assets/img/copy-dark.png" /></uni-view></uni-view
@@ -91,9 +85,10 @@
                     ><uni-text class="font-13 color-gray"><span>邀请链接</span></uni-text
                     ><uni-view class="flex align-center"
                       ><uni-text class="font-13 color-black"
-                        ><span>oqwql.co....qb89VBxH</span></uni-text
+                        ><span>{{ shareLink + userInfo?.user?.activeCode }}</span></uni-text
                       >
                       <img
+                        @click="toCopy(shareLink + userInfo?.user?.activeCode)"
                         class="copy-icon"
                         style="height: 20px"
                         src="../../assets/img/copy-dark.png" /></uni-view></uni-view
@@ -109,10 +104,8 @@
                           background: var(--content-primary);
                         "
                         ><uni-button
-                          id=""
+                          @click="toCopy(shareLink + userInfo?.user?.activeCode)"
                           class="fui-button fui-button__flex-1"
-                          app-parameter=""
-                          scope=""
                           style="
                             width: 100%;
                             height: 2.4375rem;
@@ -135,31 +128,15 @@
                           ></uni-button
                         ></uni-view
                       ></uni-view
-                    ><uni-view class="code-button">
+                    ><uni-view
+                      class="code-button"
+                      @click="handleShowCenter(shareLink + userInfo?.user?.activeCode)"
+                    >
                       <img
                         src="../../assets/img/qrcode-dark.png"
                         style="height: 28px"
                       /> </uni-view></uni-view></uni-view></uni-view></uni-view
             ><uni-view class="invite-scroll-bottom"
-              ><uni-view class="bottom-cell"
-                ><uni-text class="font-14 color-black font-weight"><span>我的返佣:</span></uni-text
-                ><uni-text
-                  class="fui-icon"
-                  style="color: var(--content-primary); font-size: 1.1875rem; font-weight: normal"
-                  ><span></span></uni-text
-                ></uni-view
-              ><uni-view class="bottom-card flex align-center"
-                ><uni-view class="bottom-card-column"
-                  ><uni-text class="font-12 color-gray"><span>总返佣(USDT) </span></uni-text
-                  ><uni-text class="font-18 color-black font-weight"
-                    ><span>0.01440000</span></uni-text
-                  ></uni-view
-                ><uni-view class="bottom-card-column"
-                  ><uni-text class="font-12 color-gray"><span>已邀请好友(人) </span></uni-text
-                  ><uni-text class="font-18 color-black font-weight"
-                    ><span>6</span></uni-text
-                  ></uni-view
-                ></uni-view
               ><uni-view class="bottom-cell"
                 ><uni-text class="font-14 color-black font-weight"
                   ><span>邀请攻略</span></uni-text
@@ -209,47 +186,6 @@
                       ></span
                     ></uni-text
                   ></uni-view
-                ><uni-view class="bottom-card-row"
-                  ><uni-image style="height: 12px"
-                    ><div
-                      style="
-                        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAWCAYAAAAvg9c4AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF1SURBVHgBtVXBUcMwENyT7RBeuANMBaSEUAF0AB2gVJChgjgVkBKgAlKC6UB04A9DEic6zoOJFbCNMgk747FOWu2d5JUM/APIDSJdTMA86J5BWQA8L9Jo7iXa08sZM93CA4rsaJn208YxN2BwBk9YVq3JQzcIwE9rWV4TkcCJZJ1IM666YviILtJTIy/TRpbtGTrbk7fxFPaACJ5vAzqSqCBx2q84VLSvP5IfotlBon3NyZrV5DsWH5oAnj4tEelVKl/5Hu3IZdZVkfb2qjT7Q3DUJdgoyiAjE3efGrEQHk/0QneJEjwR3a9e5DWsQlNMexfwrbQ1O5Hry7yL6y3KzHGdwL4dRRT10mVblcGhomKznTtWLpd5Fz+EB9jSNRHXScQhq6pdnjQLdbflylhYViGZbxrFoM6+/gQ8rKuEeXd8WiAaKLZj1IRpGGCTbzgYt9T4u4fw4MYyf8COMxWsUdUd2mmRCnKabHmaZrvd6tKNCEH2CeAkgvNRDg/2AAAAAElFTkSuQmCC');
-                        background-size: 100% 100%;
-                      "
-                    ></div>
-                    <uni-resize-sensor
-                      ><div><div></div></div>
-                      <div><div></div></div></uni-resize-sensor
-                    ><img
-                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAWCAYAAAAvg9c4AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF1SURBVHgBtVXBUcMwENyT7RBeuANMBaSEUAF0AB2gVJChgjgVkBKgAlKC6UB04A9DEic6zoOJFbCNMgk747FOWu2d5JUM/APIDSJdTMA86J5BWQA8L9Jo7iXa08sZM93CA4rsaJn208YxN2BwBk9YVq3JQzcIwE9rWV4TkcCJZJ1IM666YviILtJTIy/TRpbtGTrbk7fxFPaACJ5vAzqSqCBx2q84VLSvP5IfotlBon3NyZrV5DsWH5oAnj4tEelVKl/5Hu3IZdZVkfb2qjT7Q3DUJdgoyiAjE3efGrEQHk/0QneJEjwR3a9e5DWsQlNMexfwrbQ1O5Hry7yL6y3KzHGdwL4dRRT10mVblcGhomKznTtWLpd5Fz+EB9jSNRHXScQhq6pdnjQLdbflylhYViGZbxrFoM6+/gQ8rKuEeXd8WiAaKLZj1IRpGGCTbzgYt9T4u4fw4MYyf8COMxWsUdUd2mmRCnKabHmaZrvd6tKNCEH2CeAkgvNRDg/2AAAAAElFTkSuQmCC"
-                      draggable="false" /></uni-image
-                  ><uni-text class="font-13 color-black"
-                    ><span
-                      >获得返佣
-                      <uni-text class="font-11 color-gray"
-                        ><span> /好友进行现货和合约交易</span></uni-text
-                      ></span
-                    ></uni-text
-                  ></uni-view
-                ></uni-view
-              ><uni-view class="bottom-cell"
-                ><uni-text class="font-14 color-black font-weight"
-                  ><span>24H返佣排行榜</span></uni-text
-                ></uni-view
-              ><uni-view class="bottom-list"
-                ><uni-view class="not-data"
-                  ><uni-view class="fui-empty__wrap" style="margin-top: 0px">
-                    <img
-                      src="../../assets/img/not-order.png"
-                      alt=""
-                      style="width: 6.25rem; height: 100px"
-                    />
-                    <uni-text
-                      class="fui-empty__title"
-                      style="color: var(--color-text-dark-gray); font-size: 0.8125rem"
-                      ><span>暂无资料</span></uni-text
-                    ></uni-view
-                  ></uni-view
                 ></uni-view
               ></uni-view
             >
@@ -258,8 +194,103 @@
       </div>
     </uni-scroll-view>
   </uni-view>
+  <van-popup v-model:show="showCenter" round>
+    <uni-view class="qrcode-popup"
+      ><uni-view class="qrcode-head"
+        ><uni-view class="cell">
+          <img
+            :src="path"
+            style="
+              width: 1.5625rem;
+              height: 1.5625rem;
+              border-radius: 0.3125rem;
+              margin-right: 0.625rem;
+            "
+            draggable="false"
+          />
+          <uni-text class="font-14 color-black font-weight"
+            ><span>{{ VITE_APP_EXCHANGE_NAME }}</span></uni-text
+          ></uni-view
+        ><uni-view class="cell"
+          ><uni-text class="font-13 color-black"
+            ><span>立即加入，一起赚钱</span></uni-text
+          ></uni-view
+        ><uni-view class="code-box">
+          <img :src="QRCodeIMG" class="code-canvas" />
+          <uni-text class="font-13 color-gray"><span>邀请码</span></uni-text
+          ><uni-text class="font-14 color-black font-weight"
+            ><span>{{ userInfo?.user?.activeCode }}</span></uni-text
+          ></uni-view
+        ></uni-view
+      ><uni-view class="qrcode-close" @click="showCenter = false"
+        ><uni-text
+          class="fui-icon"
+          style="color: var(--content-primary); font-size: 1.125rem; font-weight: normal"
+          ><span></span></uni-text
+        ></uni-view
+      ></uni-view
+    >
+  </van-popup>
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { useUserStore } from '@/store/user/index'
+import { useMainStore } from '@/store'
+import { getAgentInfo } from '@/api/invaite/index.js'
+import Copy from 'vue-clipboard3'
+import QRCode from 'qrcode'
 const router = useRouter()
+const useStore = useUserStore()
+const mainStore = useMainStore()
+const { toClipboard } = Copy()
+const { userInfo } = storeToRefs(useStore)
+const shareLink = `${location.origin}/#/i&`
+const agentInfo = ref({})
+const toCopy = async (text) => {
+  try {
+    await toClipboard(`${text}`)
+    showToast('复制成功')
+  } catch (e) {
+    _toast('复制失败')
+  }
+}
+const showCenter = ref(false)
+const handleShowCenter = (value) => {
+  getQR(value)
+  showCenter.value = true
+}
+const path = computed(() => {
+  let tempPath = mainStore.getLogoList?.logo || mainStore.getLogoList?.logoD
+  return tempPath
+})
+const VITE_APP_EXCHANGE_NAME = import.meta.env.VITE_APP_EXCHANGE_NAME
+const QRCodeIMG = ref()
+const getQR = (address) => {
+  console.log(address)
+
+  if (address) {
+    QRCode.toDataURL(address, {
+      version: '',
+      errorCorrectionLevel: 'H',
+      maskPattern: 2,
+      margin: 2,
+      scale: 3,
+      height: 120,
+      width: 120,
+      scal: 200,
+      color: {
+        dark: '#000',
+        light: '#fff'
+      }
+    }).then((url) => {
+      QRCodeIMG.value = url
+    })
+  }
+}
+onMounted(() => {
+  getAgentInfo().then((res) => {
+    agentInfo.value = res.data
+  })
+})
 </script>

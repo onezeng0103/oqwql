@@ -11,7 +11,6 @@ export const useAccountStore = defineStore('account', () => {
   const getRechangeCoinList = async () => {
     const data = await getAppCurrencyList()
     rechangeCoinList.value = data.data
-    console.log(1111, rechangeCoinList.value)
   }
   /**
    * 提现
@@ -47,7 +46,6 @@ export const useAccountStore = defineStore('account', () => {
         list.push(obj)
       }
     })
-    console.log('兑换成什么币种列表', list)
     swapCoinList.value = list
   }
   return {

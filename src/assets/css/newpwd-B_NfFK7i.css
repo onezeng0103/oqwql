@@ -1,0 +1,58 @@
+.newPwd {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+.newPwd-body {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+}
+.newPwd-body .tips {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+}
+.newPwd-body .tips .fui-icon {
+  margin-right: 0.3125rem;
+}
+.newPwd-body .label-box {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.9375rem;
+}
+.newPwd-body .label-box .text-cell {
+  display: flex;
+  align-items: center;
+}
+.newPwd-body .label-box .input-box {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  background: var(--background-secondary);
+  border-radius: 0.25rem;
+  border: 0.0625rem solid var(--background-secondary);
+}
+.newPwd-body .label-box .input-box:focus-within {
+  border-color: var(--color-primary);
+}
+.newPwd-body .label-box .input-box uni-input {
+  width: calc(100% - 2.1875rem);
+  height: 2.4375rem;
+  font-size: 0.8125rem;
+  color: var(--content-primary);
+}
+.newPwd-body .label-button {
+  width: 100%;
+  height: auto;
+  margin-top: 2.5rem;
+}

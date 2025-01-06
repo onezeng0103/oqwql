@@ -114,8 +114,6 @@ export const LatestpriceLargeToSmall = (list, obj, type, isRise = 0) => {
   var newArr = newList.slice(0).sort(function (a, b) {
     return a.latestPrice - b.latestPrice
   })
-
-  console.log(newArr)
   return newArr
 }
 /**

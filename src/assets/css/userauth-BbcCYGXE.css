@@ -1,0 +1,58 @@
+.userAuth {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--white);
+}
+.userAuth-container,
+.userAuth-container .label-card {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+}
+.userAuth-container .label {
+  width: 100%;
+  margin-bottom: 1.5625rem;
+}
+.userAuth-container .label-title {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userAuth-container .label-title-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userAuth-container .label-title-right uni-image {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-right: 0.25rem;
+}
+.userAuth-container .label-card {
+  width: 100%;
+  border-radius: 0.625rem;
+  background: var(--color-gray-bg);
+}
+.userAuth-container .label-card .description {
+  line-height: 1.3125rem;
+}
+.userAuth-container .label-card-button {
+  width: 100%;
+  height: auto;
+  margin-top: 0.9375rem;
+}
+.userAuth-container .label-content {
+  width: 100%;
+  height: auto;
+  padding: 0.625rem 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.userAuth-container .label-content uni-text {
+  line-height: 1.1875rem;
+  margin-bottom: 0.5rem;
+}

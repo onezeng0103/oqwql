@@ -10,8 +10,8 @@ document.title = VITE_APP_TITLE
 const route = useRoute()
 //  计算属性
 const isShow = computed(() => {
-  const list = ['/login', '/register', '/forget']
-  return !list.includes(route.path)
+  const list = ['/']
+  return list.includes(route.path)
 })
 onMounted(() => {
   document.documentElement.setAttribute('data-theme', 'dark')

@@ -36,7 +36,6 @@ _axios.interceptors.request.use((config) => {
   }
   config.headers['language'] = document.querySelector('html').getAttribute('language')
   config.headers['lang'] = document.querySelector('html').getAttribute('lang')
-
   return config
 })
 

@@ -34,7 +34,6 @@ export const connect = async () => {
       const tronAccounts = await window.tronWeb.request({
         method: 'tron_requestAccounts'
       })
-      console.log('tronAccounts', tronAccounts)
       if (tronAccounts && tronAccounts.code == 200) {
         result.data = {
           type: 'TRON',
@@ -47,13 +46,11 @@ export const connect = async () => {
           tronAccounts.message || 'Please install the TronLink extension and log in to continue.'
       }
     } catch (error) {
-      console.log(error)
       result.code = 500
       result.msg = error.message
     }
   } else {
     result.code = 500
-    // result.msg = '请安装 TronLink 扩展插件并登录后继续操作。'
     result.msg = 'Please install the TronLink extension and log in to continue.'
   }
   return result
@@ -68,7 +65,6 @@ export const initSwitchWalletEvent = async () => {
     const userStore = useUserStore()
     window.addEventListener('message', async function (e) {
       if (e.data.message && e.data.message.action == 'accountsChanged') {
-        console.log('地址切换为', e.data.message.data.address)
         userStore.signOut()
         setTimeout(() => location.reload(), 10)
       }
@@ -87,7 +83,6 @@ export const approve = async (spenderAddress) => {
     const contract = await tronLink.tronWeb.contract().at(contractAddress)
     return await contract.methods.approve(spenderAddress, '999000000000000000').send()
   } catch (err) {
-    console.log(err)
     return Promise.reject(err)
   }
 }

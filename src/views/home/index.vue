@@ -54,71 +54,66 @@
                   height="100%"
                   src="../../assets/img/notify-dark.png"
                   draggable="false" /></uni-view></uni-view></uni-view></uni-view></uni-view></uni-view
-    ><uni-view class="page_main"
-      ><uni-view class="property"
-        ><uni-view class="property_top notranslate"
-          ><uni-text class="font-14 color-gray font-weight notranslate"
-            ><span>资产估值(USDT)</span></uni-text
-          ></uni-view
-        >
-        <uni-view class="property_con">
-          <uni-view class="property_con_left notranslate">
-            <uni-text class="font-18 color-black font-weight notranslate">
-              <span>40,241.15</span>
-            </uni-text>
-            <uni-text class="font-12 color-gray notranslate">
-              <span>≈$40,194.07</span>
-            </uni-text>
+    ><uni-view class="page_main">
+      <uni-view class="property">
+        <template v-if="isSign">
+          <uni-view class="property_top notranslate">
+            <uni-text class="font-14 color-gray font-weight notranslate">
+              <span>资产估值(USDT)</span></uni-text
+            >
           </uni-view>
-          <uni-view
-            class="fui-button__wrap"
-            style="
-              width: 5rem;
-              height: 2.0625rem;
-              margin: 0px;
-              border-radius: 0.25rem;
-              background: var(--blue);
-            "
-          >
-            <uni-button
-              class="fui-button"
+          <uni-view class="property_con">
+            <uni-view class="property_con_left notranslate">
+              <uni-text class="font-18 color-black font-weight notranslate">
+                <span>40,241.15</span>
+              </uni-text>
+              <uni-text class="font-12 color-gray notranslate">
+                <span>≈$40,194.07</span>
+              </uni-text>
+            </uni-view>
+            <uni-view
+              class="fui-button__wrap"
               style="
                 width: 5rem;
                 height: 2.0625rem;
-                line-height: 2.0625rem;
-                background: var(--blue);
-                border-width: 0px;
-                border-color: var(--blue);
+                margin: 0px;
                 border-radius: 0.25rem;
-                font-size: 0.75rem;
-                color: rgb(255, 255, 255);
+                background: var(--blue);
               "
-              >充值/買幣</uni-button
+            >
+              <uni-button
+                class="fui-button"
+                style="
+                  width: 5rem;
+                  height: 2.0625rem;
+                  line-height: 2.0625rem;
+                  background: var(--blue);
+                  border-width: 0px;
+                  border-color: var(--blue);
+                  border-radius: 0.25rem;
+                  font-size: 0.75rem;
+                  color: rgb(255, 255, 255);
+                "
+                >充值/買幣</uni-button
+              ></uni-view
             ></uni-view
-          ></uni-view
-        >
-        <uni-view class="banner"
-          ><uni-view class="left"
-            ><uni-text class="font-14 color-black font-weight"
-              ><span>立即注册，领取丰厚奖励</span></uni-text
-            ><uni-text class="font-13 color-blue font-weight"
-              ><span @click="router.push('/login')">登入/注册</span></uni-text
-            ></uni-view
-          ><uni-image
-            ><div
-              style="
-                background-image: url('../../assets/img/bg-aHsi6WdP.png');
-                background-position: 0% 0%;
-                background-size: 100% 100%;
-              "
-            ></div>
-            <span></span
-            ><img
-              width="100%"
-              height="100%"
+          >
+        </template>
+        <template v-else>
+          <uni-view class="banner"
+            ><uni-view class="left"
+              ><uni-text class="font-14 color-black font-weight"
+                ><span>立即注册，领取丰厚奖励</span></uni-text
+              ><uni-text class="font-13 color-blue font-weight"
+                ><span @click="router.push('/login')">登入/注册</span></uni-text
+              ></uni-view
+            >
+            <img
+              style="width: 6.59375rem; height: 3.71875rem"
               src="../../assets/img/bg-aHsi6WdP.png"
-              draggable="false" /></uni-image
-        ></uni-view>
+              alt=""
+          /></uni-view>
+        </template>
       </uni-view>
       <uni-view class="menu"
         ><uni-view class="menu_item"
@@ -607,11 +602,14 @@
   <LeftPopup :showLeft="showLeft" @close="close" />
 </template>
 <script setup>
-import { useMainStore } from '@/store/index.js'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user/index'
+import { useMainStore } from '@/store/index.js'
 import LeftPopup from './component/leftPopup.vue'
 const router = useRouter()
+const userStore = useUserStore()
 const mainStore = useMainStore()
+const isSign = ref(userStore.isSign)
 const path = computed(() => {
   let tempPath = mainStore.getLogoList?.logo || mainStore.getLogoList?.logoD
   return tempPath

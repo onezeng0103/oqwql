@@ -125,14 +125,8 @@ class Datafeeds {
    * @param {Object} newData
    */
   updateData(newData) {
-    // 去重
-    // if (this.barList.length > 5000) {
-    // 	this.barList.shift()
-    // }
-
     let subscriberUID = Object.keys(this.subscribers)[0] || ''
     let subscriberObj = this.subscribers[subscriberUID] || {}
-    // console.log('更新数据', newData)
     if (subscriberObj.lastBarTime < newData.time) {
       this.barList.push(newData)
       subscriberObj.lastBarTime = newData.time
@@ -144,29 +138,6 @@ class Datafeeds {
       })
       subscriberObj?.onRealtimeCallback && subscriberObj?.onRealtimeCallback(newData)
     }
-  }
-
-  // /**
-  //  * 获取服务器时间
-  //  * @param {*Function} callback   设置回调
-  //  */
-  // getServerTime(callback) {
-  //   // callback(unixTime)
-  //   this.self.getServerTime(callback)
-  // }
-  /**
-   * 图表库调用这个函数来获得可见的K线范围的标记
-   */
-  getMarks() {}
-  /**
-   * 图表库调用此函数获取可见K线范围的时间刻度标记
-   */
-  getTimescaleMarks() {}
-  /**
-   * 图表库在它要请求一些历史数据的时候会调用这个函数，让你能够覆盖所需的历史深度
-   */
-  calculateHistoryDepth(resolution, resolutionBack, intervalBack) {
-    // console.log('calculateHistoryDepth', resolution, resolutionBack, intervalBack)
   }
 }
 

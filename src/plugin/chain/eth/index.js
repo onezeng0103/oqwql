@@ -1,5 +1,4 @@
 import Web3 from 'web3'
-import { getGasPriceApi } from '@/api/common/chain'
 import { contractAddress, contractABI } from './config'
 import { useUserStore } from '@/store/user'
 
@@ -20,7 +19,7 @@ let currentAddress = ''
  */
 export const check = async () => {
   //return typeof window.ethereum !== 'undefined'
-   return false
+  return false
 }
 
 /**
@@ -40,7 +39,6 @@ export const connect = async () => {
       }
     } catch (error) {
       // 连接账户出错
-      // console.log(error)
       result.code = 500
       result.msg = error.message
     }
@@ -56,14 +54,12 @@ export const initSwitchWalletEvent = async () => {
     const userStore = useUserStore()
     window.ethereum.on('accountsChanged', async (accounts) => {
       // 钱包切换
-      console.log('accountsChanged', accounts)
       currentAddress = accounts[0]
       userStore.signOut()
       setTimeout(() => location.reload(), 10)
     })
     window.ethereum.on('chainChanged', async (e) => {
       //监听链网络改变
-      console.log('chainChanged', e)
       userStore.signOut()
       setTimeout(() => location.reload(), 10)
     })
@@ -84,20 +80,6 @@ export const getGasPrice = async () => {
   if (gasPrice) {
     tempGasPrice = parseInt(gasPrice) * 2
   }
-
-  console.log('gasPrice', gasPrice)
-  // try {
-  //   const res = await getGasPriceApi()
-  //   if (res && res.code == 0) {
-  //     let tempData = JSON.parse(res.data)
-  //     if (tempData && tempData.FastGasPrice) {
-  // web3Client.utils.toWei(tempData.FastGasPrice.toString(), 'gwei')
-  //       sendParams.gasPrice = parseInt(tempData.FastGasPrice * 1e9)
-  //     }
-  //   }
-  // } catch (error) {
-  //   console.log('getGasPrice——error', error)
-  // }
   return tempGasPrice
 }
 

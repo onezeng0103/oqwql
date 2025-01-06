@@ -16,13 +16,8 @@ export const TEST_PLATFORM = ['dev']
  * 加载配置
  */
 const loadAppConfig = () => {
-  console.log('import.meta.env', import.meta.env)
-
   let domainUrl = getMainDomain()
   window.__config = {
-    // _BASE_API: import.meta.env.VITE_APP_BASE_API || `http://webapi.${domainUrl}`,
-    // _BASE_WSS: import.meta.env.VITE_APP_BASE_WSS || `ws://webapi.${domainUrl}`,
-    // _STATIC_API: import.meta.env.VITE_APP_STATIC_API || `https://static.${domainUrl}`
     _BASE_API: import.meta.env.VITE_APP_BASE_API,
     _BASE_WSS: import.meta.env.VITE_APP_BASE_WSS,
     _STATIC_API: import.meta.env.VITE_APP_STATIC_API || `https://static.${domainUrl}`
@@ -37,7 +32,6 @@ const loadAppConfig = () => {
   if (TEST_PLATFORM.includes(import.meta.env.VITE_APP_ENV)) {
     // 允许测试平台
     let testPlatformData = localStorage.getItem(storageDict.TEST_PLATFORM)
-    console.log(storageDict.TEST_PLATFORM)
     if (testPlatformData) {
       try {
         testPlatformData = JSON.parse(testPlatformData)
@@ -63,38 +57,6 @@ const loadAppConfig = () => {
 }
 // 执行加载配置
 loadAppConfig()
-/**
- * 插入标签
- */
-const insertMetaTag = (name, content) => {
-  // 创建一个新的 <meta> 元素
-  const newMetaElement = document.createElement('meta')
-  newMetaElement.setAttribute('name', name)
-  newMetaElement.setAttribute('content', content)
-  document.head.appendChild(newMetaElement)
-}
-/**
- * 插入ico
- */
-const insertFavicon = (faviconPath) => {
-  const linkElement = document.createElement('link')
-  linkElement.rel = 'icon'
-  linkElement.type = 'image/x-icon'
-  linkElement.href = faviconPath
-  document.head.appendChild(linkElement)
-}
-/**
- * 初始化html配置
- */
-const initHtml = () => {
-  // insertFavicon(`/platform/${__config._APP_ENV}/logo.png`)
-  // document.title = __config._APP_META_TITLE
-  // // 调用函数插入新的 <meta> 元素
-  // insertMetaTag('keywords', __config._APP_META_KEYWORDS)
-  // insertMetaTag('description', __config._APP_META_DESCRIPTION)
-}
-initHtml()
-
 /**
  * 默认语言
  */

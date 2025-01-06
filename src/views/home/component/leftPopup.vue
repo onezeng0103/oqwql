@@ -14,11 +14,71 @@
             ><uni-text
               class="fui-icon"
               style="color: var(--color-title-black); font-size: 1.75rem; font-weight: normal"
-              ><span></span></uni-text
-            ></uni-view
-          ><uni-view class="mineInfo mt-15"
-            ><uni-view class="mineInfo_avatar"
+              ><span></span>
+            </uni-text>
+          </uni-view>
+          <uni-view v-if="!isSign" class="mineLogin flex flex-column"
+            ><uni-text class="font-20 color-black font-weight"
+              ><span>欢迎来到 {{ VITE_APP_EXCHANGE_NAME }}</span></uni-text
+            ><uni-text class="font-13 color-gray mt-10"
+              ><span>立即注册，领取丰厚奖励</span></uni-text
+            ><uni-view class="mineLogin-buttons mt-10 flex flex-row align-center justify-between"
               ><uni-view
+                class="fui-button__wrap"
+                style="
+                  width: 10.3125rem;
+                  height: 2.0625rem;
+                  margin: 0px;
+                  border-radius: 0.1875rem;
+                  background: var(--color-gray-bg);
+                "
+                ><uni-button
+                  @click="router.push('/register')"
+                  class="fui-button"
+                  style="
+                    width: 10.3125rem;
+                    height: 2.0625rem;
+                    line-height: 2.0625rem;
+                    background: var(--color-gray-bg);
+                    border-width: 0px;
+                    border-color: var(--color-gray-bg);
+                    border-radius: 0.1875rem;
+                    font-size: 0.8125rem;
+                    color: var(--color-title-black);
+                  "
+                  >注册</uni-button
+                ></uni-view
+              ><uni-view
+                class="fui-button__wrap"
+                style="
+                  width: 10.3125rem;
+                  height: 2.0625rem;
+                  margin: 0px;
+                  border-radius: 0.1875rem;
+                  background: var(--blue);
+                "
+                ><uni-button
+                  @click="router.push('/login')"
+                  class="fui-button"
+                  style="
+                    width: 10.3125rem;
+                    height: 2.0625rem;
+                    line-height: 2.0625rem;
+                    background: var(--blue);
+                    border-width: 0px;
+                    border-color: var(--blue);
+                    border-radius: 0.1875rem;
+                    font-size: 0.8125rem;
+                    color: rgb(255, 255, 255);
+                  "
+                  >登入</uni-button
+                ></uni-view
+              ></uni-view
+            ></uni-view
+          >
+          <uni-view class="mineInfo mt-15" v-if="isSign">
+            <uni-view class="mineInfo_avatar">
+              <uni-view
                 class="fui-avatar__wrap fui-avatar__circle"
                 style="
                   background: var(--color-gray-bg);
@@ -27,23 +87,22 @@
                   width: 2.5rem;
                   height: 2.5rem;
                 "
-                ><uni-image
+              >
+                <img
+                  :src="path"
+                  alt=""
                   class="fui-avatar__img fui-avatar__circle"
                   webp="false"
                   style="width: 2.5rem; height: 2.5rem"
-                  ><div
-                    style="
-                      background-image: none;
-                      background-position: 0% 0%;
-                      background-size: 100% 100%;
-                    "
-                  ></div>
-                  <span></span></uni-image></uni-view></uni-view
+                /> </uni-view></uni-view
             ><uni-view class="mineInfo_phone"
-              ><uni-text class="font-16 font-weight color-black"><span>gagaga</span></uni-text
-              ><uni-text class="font-13 color-gray mt-5"><span>UID:19297</span></uni-text></uni-view
+              ><uni-text class="font-16 font-weight color-black"
+                ><span> {{ userInfo?.user?.loginName }} </span></uni-text
+              ><uni-text class="font-13 color-gray mt-5"
+                ><span>UID:{{ userInfo?.user?.userId }}</span></uni-text
+              ></uni-view
             ></uni-view
-          ><uni-view class="yqpannel" @click="router.push('/invaite')"
+          ><uni-view v-if="isSign" class="yqpannel" @click="router.push('/invaite')"
             ><uni-view class="yqbj"
               ><uni-view
                 ><uni-text class="font-14 font-weight color-white hide"
@@ -56,8 +115,10 @@
               ></uni-view
             ></uni-view
           ><uni-view class="mineList"
-            ><uni-view
-              ><uni-view class="mineList_item flex align-center justify-between"
+            ><uni-view v-if="isSign"
+              ><uni-view
+                class="mineList_item flex align-center justify-between"
+                @click="router.push('/userauth')"
                 ><uni-view class="flex align-center"
                   ><img
                     class="cell-image"
@@ -101,7 +162,9 @@
                   ></uni-view
                 ></uni-view
               ></uni-view
-            ><uni-view class="mineList_item border-bottom-8 flex align-center justify-between"
+            ><uni-view
+              @click="router.push('/langList')"
+              class="mineList_item border-bottom-8 flex align-center justify-between"
               ><uni-view class="flex align-center"
                 ><img
                   class="cell-image"
@@ -202,7 +265,7 @@
                 ></uni-view
               ></uni-view
             ></uni-view
-          ><uni-view class="loginOut-box"
+          ><uni-view v-if="isSign" class="loginOut-box"
             ><uni-view
               class="fui-button__wrap fui-button__flex-1"
               style="
@@ -213,10 +276,8 @@
                 background: var(--color-button-defalut-bg);
               "
               ><uni-button
-                id=""
+                @click="exit"
                 class="fui-button fui-button__flex-1 fui-button__active-pc"
-                app-parameter=""
-                scope=""
                 style="
                   width: 100%;
                   height: 2.75rem;
@@ -239,7 +300,13 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { useUserStore } from '@/store/user/index'
+import { useMainStore } from '@/store/index'
+import { signOut } from '@/api/user'
 const router = useRouter()
+const userStore = useUserStore()
+const mainStore = useMainStore()
 const props = defineProps({
   showLeft: {
     type: Boolean,
@@ -247,7 +314,33 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(['close'])
+
+// 判断是否登录
+const isSign = ref(userStore.isSign)
+const { userInfo } = storeToRefs(userStore)
+
+const path = computed(() => {
+  let tempPath = mainStore.getLogoList?.logo || mainStore.getLogoList?.logoD
+  return tempPath
+})
+const VITE_APP_EXCHANGE_NAME = import.meta.env.VITE_APP_EXCHANGE_NAME
 const handleClose = () => {
   emits('close')
+}
+const exit = () => {
+  signOut()
+    .then((res) => {
+      if (res.code == '200') {
+        showToast('退出成功！')
+        userStore.signOut()
+        router.replace('/')
+        handleClose()
+        isSign.value = false
+        setTimeout(() => location.reload(), 10)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 </script>

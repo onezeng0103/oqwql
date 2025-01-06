@@ -79,7 +79,6 @@ export const initTheme = () => {
   let theme = __config._APP_PLEATFORM_THEME || 'bit'
   // 设置主题
   setTheme(theme)
-  console.log('当前主题', theme)
 }
 
 /**

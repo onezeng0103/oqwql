@@ -1,0 +1,17 @@
+.rules {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--white);
+}
+.container {
+  background-color: var(--white);
+}
+.content-text-wrap uni-text {
+  line-height: 1rem;
+}
+.bg-white {
+  background: var(--color-gray-bg) !important;
+}
+.radius-card {
+  border-radius: 0.5rem;
+}

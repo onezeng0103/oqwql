@@ -14,10 +14,15 @@ export default class ClientWebSocket {
 
   constructor(userId) {
     // 初始化
-    let baseUrl = __config._BASE_WSS || (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname
-    if(baseUrl.search("://") == -1) {
-      baseUrl = (baseUrl.substr(0,1) == '/') ? baseUrl : '/'+ baseUrl
-      baseUrl = (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname + baseUrl
+    let baseUrl =
+      __config._BASE_WSS ||
+      (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname
+    if (baseUrl.search('://') == -1) {
+      baseUrl = baseUrl.substr(0, 1) == '/' ? baseUrl : '/' + baseUrl
+      baseUrl =
+        (window.location.protocol == 'http:' ? 'ws://' : 'wss://') +
+        window.location.hostname +
+        baseUrl
     }
     this.url = `${baseUrl}/ws/coin/${userId}`
     this.init()
@@ -50,7 +55,6 @@ export default class ClientWebSocket {
    * 响应数据
    */
   onMessage = (e) => {
-    console.log('响应数据', e.data)
     let data = JSON.parse(e.data)
     if ([socketDict.HEARTBEAT].includes(data.type)) {
       this.send('ping')

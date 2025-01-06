@@ -121,13 +121,6 @@ const handleInputChange = (e) => {
   areaList.value = originAreaList
     .filter((item) => {
       item.list = item.data.filter((item1) => {
-        console.log(
-          item1.englishName.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
-            item1.chineseName.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
-            item1.phoneCode.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
-            item1.countryCode.toLowerCase().indexOf(val.toLowerCase()) > -1
-        )
-
         return (
           item1.englishName.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
           item1.chineseName.toLowerCase().indexOf(val.toLowerCase()) > -1 ||

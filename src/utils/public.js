@@ -66,7 +66,6 @@ export const _numberWithCommas = (val) => {
  */
 export const _timeFormat = (time, expression = '', flag = false) => {
   const mainStore = useMainStore()
-  // console.log('时间', time, mainStore.timezone, mainStore.timeFormat)
   let tempExpression = mainStore.timeFormat
   if (flag) {
     tempExpression = expression || tempExpression
