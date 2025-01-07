@@ -191,6 +191,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid var(--color-gray-bg);
 }
 .home .page_main .swiper_wrap .swiper_wrap_left {
   width: 100%;

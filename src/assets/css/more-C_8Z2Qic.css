@@ -1,0 +1,60 @@
+.more {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+.more .container .container-list .list-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+}
+.more .container .container-list .list-box ._title {
+  width: 100%;
+}
+.more .container .container-list .list-box .menu-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.more .container .container-list .list-box .menu-box .menu-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.9375rem;
+}
+.more .container .container-list .list-box .menu-box .menu-item .image-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-secondary);
+  margin-bottom: 0.5rem;
+}
+.more .container .container-list .list-box .menu-box .menu-item .image-box uni-image {
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+}
+.more
+  .container
+  .container-list
+  .list-box
+  .menu-box
+  .menu-item
+  .image-box[type='invite']
+  uni-image {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 50%;
+}
+.more .container .container-list .list-box .menu-box .menu-item uni-text {
+  text-align: center;
+  text-transform: capitalize;
+}

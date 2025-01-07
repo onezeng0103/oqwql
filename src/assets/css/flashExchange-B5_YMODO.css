@@ -1,0 +1,107 @@
+.flashExchangeWrap {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+.flashExchangeWrap .container {
+  width: 100%;
+  height: auto;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+}
+.flashExchangeWrap .flashExchangeCompareBox {
+  display: flex;
+  background-color: var(--background-secondary);
+  border-radius: 0.5rem;
+  justify-content: space-between;
+  padding: 0.625rem 0.9375rem;
+  margin-top: 0.9375rem;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxL {
+  text-align: left;
+  flex: 1;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxL .flashExchangeCurrencyBox {
+  justify-content: flex-start;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxM {
+  position: relative;
+  width: 2.1875rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxM .line {
+  width: 2px;
+  height: 3.75rem;
+  margin: 0.625rem 0 0;
+  box-sizing: border-box;
+  background-color: var(--background-disabled);
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxM .circleBox {
+  width: 2.1875rem;
+  height: 2.1875rem;
+  background-color: var(--background-dark);
+  border: 1px solid var(--border-strength-100);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  margin-top: -1.09375rem;
+  left: 50%;
+  margin-left: -1.09375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxM .circleBox .icon {
+  width: 70%;
+  height: 70%;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxR {
+  flex: 1;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxR .flashExchangeCurrencyBox {
+  justify-content: flex-end;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxR .flashExchangeCurrencyBalance,
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxR .flashExchangeCurrencyValue {
+  text-align: right;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCurrencyBox {
+  display: flex;
+  align-items: center;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCurrencyBox .currencyIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+}
+.flashExchangeWrap .flashExchangeCompareBox .flashExchangeCurrencyBalance {
+  margin-top: 0.5rem;
+}
+.flashExchangeWrap .flashExchangeCompareInfo {
+  background-color: var(--background-secondary);
+  border-radius: 0.5rem;
+  justify-content: space-between;
+  padding: 0.625rem 0.9375rem;
+  margin-top: 0.3125rem;
+}
+.flashExchangeWrap .transactionBox .rectBox {
+  background-color: var(--background-dark);
+  width: 1.4375rem;
+  height: 2.1875rem;
+  border-radius: 0.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flashExchangeWrap .transactionBox .rectBox .icon {
+  width: 70%;
+  height: 70%;
+}
+.flashExchangeWrap .transactionBox .item {
+  background-color: var(--background-secondary);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.9375rem;
+}

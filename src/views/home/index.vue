@@ -116,7 +116,7 @@
         </template>
       </uni-view>
       <uni-view class="menu"
-        ><uni-view class="menu_item"
+        ><uni-view class="menu_item" @click="router.push('/invaite')"
           ><uni-view class="imgBox">
             <img
               style="width: 1.875rem; height: 1.875rem"
@@ -124,7 +124,7 @@
               draggable="false"
             /> </uni-view
           ><uni-text class="font-13 color-dark"><span>邀请好友</span></uni-text></uni-view
-        ><uni-view class="menu_item">
+        ><uni-view class="menu_item" @click="router.push('/flashExchange')">
           <uni-view class="imgBox">
             <img
               style="width: 1.875rem; height: 1.875rem"
@@ -132,15 +132,15 @@
               draggable="false"
             /> </uni-view
           ><uni-text class="font-13 color-dark"><span>闪兑</span></uni-text></uni-view
-        ><uni-view class="menu_item"
-          ><uni-view class="imgBox">
+        ><uni-view class="menu_item" @click="router.push('/recharge')">
+          <uni-view class="imgBox">
             <img
               style="width: 1.875rem; height: 1.875rem"
               src="../../assets/img/recharge-dark.png"
               draggable="false"
             /> </uni-view
-          ><uni-text class="font-13 color-dark"><span>储值</span></uni-text></uni-view
-        ><uni-view class="menu_item"
+          ><uni-text class="font-13 color-dark"><span>充值</span></uni-text></uni-view
+        ><uni-view class="menu_item" @click="router.push('/more')"
           ><uni-view class="imgBox">
             <img
               style="width: 1.875rem; height: 1.875rem"
@@ -149,109 +149,40 @@
             /> </uni-view
           ><uni-text class="font-13 color-dark"><span>更多</span></uni-text></uni-view
         ></uni-view
-      ><uni-view class="swiper_wrap"
-        ><uni-view class="swiper_wrap_left"
-          ><uni-swiper class="swiper" easing-function="easeInOutCubic">
-            <div class="uni-swiper-wrapper">
-              <div class="uni-swiper-slides">
-                <div
-                  class="uni-swiper-slide-frame"
-                  style="width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px)"
-                >
-                  <uni-swiper-item
-                    style="
-                      position: absolute;
-                      width: 100%;
-                      height: 100%;
-                      transform: translate(0%, 0px) translateZ(0px);
-                    "
-                    ><uni-view class="swiper_item"
-                      ><uni-image style="height: 112px">
-                        <div style="background-image: none; background-size: 100% 100%"></div>
-                        <uni-resize-sensor>
-                          <div>
-                            <div></div>
-                          </div>
-                          <div>
-                            <div></div>
-                          </div>
-                        </uni-resize-sensor> </uni-image></uni-view></uni-swiper-item
-                  ><uni-swiper-item
-                    style="
-                      position: absolute;
-                      width: 100%;
-                      height: 100%;
-                      transform: translate(100%, 0px) translateZ(0px);
-                    "
-                    ><uni-view class="swiper_item"
-                      ><uni-image style="height: 112px">
-                        <div style="background-image: none; background-size: 100% 100%"></div>
-                        <uni-resize-sensor>
-                          <div>
-                            <div></div>
-                          </div>
-                          <div>
-                            <div></div>
-                          </div>
-                        </uni-resize-sensor> </uni-image></uni-view></uni-swiper-item
-                  ><uni-swiper-item
-                    style="
-                      position: absolute;
-                      width: 100%;
-                      height: 100%;
-                      transform: translate(-100%, 0px) translateZ(0px);
-                    "
-                    ><uni-view class="swiper_item"
-                      ><uni-image style="height: 112px">
-                        <div style="background-image: none; background-size: 100% 100%"></div>
-                        <uni-resize-sensor>
-                          <div>
-                            <div></div>
-                          </div>
-                          <div>
-                            <div></div>
-                          </div>
-                        </uni-resize-sensor> </uni-image></uni-view
-                  ></uni-swiper-item>
-                </div>
-              </div>
-            </div> </uni-swiper
-          ><uni-view class="swiper_dot"
-            ><uni-view class="dot dot_active"></uni-view><uni-view class="dot"></uni-view
-            ><uni-view class="dot"></uni-view></uni-view></uni-view></uni-view
-      ><uni-view class="notice"
-        ><uni-view class="notice_left"
-          ><uni-image>
-            <div
-              style="
-                background-image: url('../../assets/img/notice-dark.png');
-                background-position: 0% 0%;
-                background-size: 100% 100%;
-              "
-            ></div>
-            <span></span
-            ><img src="../../assets/img/notice-dark.png" draggable="false" /> </uni-image
-          ><uni-swiper class="ntSwiper">
-            <div class="uni-swiper-wrapper">
-              <div class="uni-swiper-slides">
-                <div class="uni-swiper-slide-frame" style="width: 100%; height: 100%"></div>
-              </div>
-            </div> </uni-swiper></uni-view
-        ><uni-view class="more"
-          ><uni-image>
-            <div
-              style="
-                background-image: url('../../assets/img/more1-dark.png');
-                background-position: 0% 0%;
-                background-size: 100% 100%;
-              "
-            ></div>
-            <span></span
-            ><img
-              src="../../assets/img/more1-dark.png"
-              draggable="false"
-            /> </uni-image></uni-view></uni-view
-      ><uni-view class="content_wrap"
+      >
+      <van-swipe class="swiper_wrap" :autoplay="3000000" indicator-color="var(--color-blue-bg)">
+        <van-swipe-item v-for="(item, index) in imgList" :key="index">
+          <img
+            style="width: 100%; height: 112px; object-fit: cover"
+            class="swiper_item"
+            :src="item"
+            alt=""
+          />
+        </van-swipe-item>
+      </van-swipe>
+      <van-notice-bar
+        background="var(--background-white)"
+        color="var(--text-white)"
+        left-icon="volume-o"
+        text="开始您的数字货币之旅"
+        style="padding: 0"
+      >
+        <template #left-icon>
+          <img
+            style="width: 1.1875rem; height: 1.1875rem; margin-right: 0.5rem"
+            src="../../assets/img/notice-dark.png"
+            draggable="false"
+          />
+        </template>
+        <template #right-icon>
+          <img
+            style="width: 1.1875rem; height: 1.1875rem"
+            src="../../assets/img/more1-dark.png"
+            draggable="false"
+          />
+        </template>
+      </van-notice-bar>
+      <uni-view class="content_wrap"
         ><uni-scroll-view
           data-v-4c7cfa9d=""
           class="fui-tabs__scrollbox"
@@ -605,6 +536,7 @@
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user/index'
 import { useMainStore } from '@/store/index.js'
+import { publiceNotice } from '@/api/common/index.js'
 import LeftPopup from './component/leftPopup.vue'
 const router = useRouter()
 const userStore = useUserStore()
@@ -618,4 +550,13 @@ const showLeft = ref(false)
 const close = () => {
   showLeft.value = false
 }
+const imgList = ref([])
+const publiceNoticeFun = async () => {
+  const res = await publiceNotice('ACTIVITY_NOTICE', 'HOME_ACTIVITY')
+  imgList.value = res?.data.map((item) => item.imgUrl)
+}
+
+onMounted(() => {
+  publiceNoticeFun()
+})
 </script>

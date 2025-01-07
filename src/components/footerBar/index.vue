@@ -5,7 +5,7 @@
       style="background-color: rgb(17, 17, 17); backdrop-filter: none; width: 100%"
     >
       <div class="uni-tabbar-border" style="background-color: rgba(0, 0, 0, 0.33)"></div>
-      <div class="uni-tabbar__item">
+      <div class="uni-tabbar__item" @click="router.push('/')">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
             <img src="../../assets/img/home-s.png" />
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="uni-tabbar__item">
+      <div class="uni-tabbar__item" @click="router.push('/wallet')">
         <div class="uni-tabbar__bd" style="height: 50px">
           <div class="uni-tabbar__icon uni-tabbar__icon__diff" style="width: 20px; height: 20px">
             <img src="../../assets/img/asset-d.png" />
@@ -74,3 +74,7 @@
     <div class="uni-placeholder" style="height: 50px"></div
   ></uni-tabbar>
 </template>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+</script>

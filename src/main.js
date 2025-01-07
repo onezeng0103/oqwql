@@ -5,6 +5,8 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { setupI18n } from './locales/index.js'
 import App from './App.vue'
 import router from './router'
+import Vant from 'vant'
+import 'vant/lib/index.css'
 import { useTradeStore } from '@/store/trade/index'
 import { useMainStore } from '@/store/index.js'
 import NoData from './components/noData/index.vue'
@@ -14,6 +16,7 @@ app.use(pinia)
 pinia.use(piniaPluginPersistedstate)
 app.component('NoData', NoData)
 app.use(router)
+app.use(Vant)
 // 获取币种列表
 const tradeStore = useTradeStore()
 const mainStore = useMainStore()

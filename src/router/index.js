@@ -70,6 +70,36 @@ const router = createRouter({
       path: '/userauth/baseauth',
       name: 'baseauth',
       component: () => import('../views/userauth/baseauth.vue')
+    },
+    {
+      path: '/flashExchange',
+      name: 'flashExchange',
+      component: () => import('../views/flashExchange/index.vue')
+    },
+    {
+      path: '/flashExchange/currencyList',
+      name: 'currencyList',
+      component: () => import('../views/flashExchange/currencyList.vue')
+    },
+    {
+      path: '/more',
+      name: 'more',
+      component: () => import('../views/more/index.vue')
+    },
+    {
+      path: '/withdraw',
+      name: 'withdraw',
+      component: () => import('../views/withdraw/index.vue')
+    },
+    {
+      path: '/recharge',
+      name: 'recharge',
+      component: () => import('../views/recharge/index.vue')
+    },
+    {
+      path: '/wallet',
+      name: 'wallet',
+      component: () => import('../views/wallet/index.vue')
     }
   ]
 })

@@ -1,0 +1,27 @@
+.currencyListWrap {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+.currencyListWrap .container {
+  width: 100%;
+  height: auto;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+}
+.currencyListWrap .item {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 0.3125rem;
+}
+.currencyListWrap .item .currencyIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+  background-color: #ddd;
+}
+.currencyListWrap .item .check {
+  margin-left: auto;
+  opacity: 1;
+}

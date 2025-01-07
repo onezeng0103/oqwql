@@ -1,0 +1,341 @@
+.nav-bar {
+  width: 100%;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+  background: var(--color-gray-bg);
+}
+.swiper {
+  width: 100%;
+  background: var(--color-gray-bg);
+}
+.scroll-view {
+  width: 100%;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+  background: var(--color-gray-bg);
+}
+.scroll-view .scroll-head {
+  width: 100%;
+  height: auto;
+  margin-top: 0.9375rem;
+}
+.scroll-view .scroll-head .asset-val {
+  width: 100%;
+  padding: 0.625rem 0.9375rem;
+  box-sizing: border-box;
+  background: var(--white);
+  border-radius: 0.5rem;
+}
+.scroll-view .scroll-head .asset-val .asset-val-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.375rem;
+}
+.scroll-view .scroll-head .asset-val .asset-val-row .asset-val-row-item {
+  display: flex;
+  align-items: center;
+}
+.scroll-view .scroll-head .asset-val .down-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 0.625rem;
+}
+.scroll-view .scroll-head .asset-val .down-btn uni-image {
+  width: 1.0625rem;
+  height: 1.0625rem;
+}
+.scroll-view .scroll-head .asset-val .tag-box {
+  background-color: var(--color-gray-bg);
+  border-radius: 0.1875rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.scroll-view .scroll-head .asset-val .tag-box:before {
+  content: '';
+  display: inline-block;
+  width: 0.03125rem;
+  height: 0.8125rem;
+  background-color: rgba(0, 0, 0, 0.08);
+  position: absolute;
+  right: calc(50% - 0.0625rem);
+}
+.scroll-view .scroll-head .asset-val .tag-box .tag {
+  width: 1.875rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-view .scroll-head .asset-val .tag-box .tag uni-image {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+.scroll-view .scroll-head .asset-val .chart-box {
+  width: 100%;
+  margin-top: 0.78125rem;
+  height: 18.75rem;
+  border-top: 0.03125rem solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+.scroll-view .scroll-head .asset-val .chart-box .chart-box-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.scroll-view .scroll-head .asset-val .chart-box .chart-box-row:first-of-type {
+  height: 2.375rem;
+  line-height: 2.375rem;
+}
+.scroll-view .scroll-head .asset-val .chart-box .chart {
+  width: 100%;
+  margin: 0.3125rem 0;
+  height: 14.0625rem;
+  position: relative;
+}
+.webView {
+  width: 300px;
+  height: 14.0625rem;
+  position: absolute;
+}
+.scroll-view .scroll-head .asset-val .chart-box .chart-box-row .tag {
+  padding: 0.3125rem 0.625rem;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+}
+.scroll-view .scroll-head .asset-val .chart-box .chart-box-row .timeActive {
+  background-color: var(--color-gray-bg);
+  color: #3a3a3a;
+  font-weight: 500;
+}
+.scroll-view .scroll-head .menu-box {
+  margin-top: 0.9375rem;
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  background: var(--white);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.scroll-view .scroll-head .menu-box .menu-box-item {
+  min-width: calc(25% - 1.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-view .scroll-head .menu-box .menu-box-item uni-image {
+  width: 1.40625rem;
+  margin-bottom: 0.4375rem;
+}
+.scroll-view .coin-list {
+  width: 100%;
+  height: auto;
+  margin-top: 1.25rem;
+  padding-bottom: 0.9375rem;
+}
+.scroll-view .coin-list .title {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.scroll-view .coin-list .title .t_left {
+  display: flex;
+  flex-direction: column;
+}
+.scroll-view .coin-list .title .t_left .checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.scroll-view .coin-list .title .t_left .checkbox uni-image {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+.scroll-view .coin-list .title .search-box {
+  min-width: 6.25rem;
+  height: 2.0625rem;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+  border-radius: 2.0625rem;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-view .coin-list .title .search-box uni-image {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3125rem;
+}
+.scroll-view .coin-list .title .search-box uni-input {
+  width: 3.125rem;
+  transition: width 0.5s;
+}
+.scroll-view .coin-list .title .search-box:focus-within {
+  border-radius: 0.3125rem;
+}
+.scroll-view .coin-list .title .search-box:focus-within uni-input {
+  width: 4.6875rem;
+  transition: width 0.5s;
+}
+.scroll-view .coin-list .coin-list-main {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  background: var(--white);
+  margin-top: 0.9375rem;
+  position: relative;
+}
+.scroll-view .coin-list .coin-list-main .cell {
+  width: 100%;
+  height: auto;
+  min-height: 3.75rem;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.scroll-view .coin-list .cell-pre {
+  margin-top: 0.9375rem;
+  width: 100%;
+  height: 15rem;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  position: relative;
+}
+.scroll-view .coin-list .coin-list-main .cell .cell-left {
+  display: flex;
+  align-items: center;
+}
+.scroll-view .coin-list .coin-list-main .cell .cell-left uni-image {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+}
+.scroll-view .coin-list .coin-list-main .cell .cell-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.scroll-view .coin-list .card-group {
+  background: transparent;
+}
+.scroll-view .coin-list .coin-list-main .cell-card {
+  width: 100%;
+  height: auto;
+  min-height: 11.5625rem;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+  margin-bottom: 0.625rem;
+  position: relative;
+  background: var(--white);
+  border-radius: 0.5rem;
+}
+.scroll-view .coin-list .coin-list-main .cell-card:last-of-type {
+  margin-bottom: 0;
+}
+.scroll-view .coin-list .coin-list-main .cell-card .cell-row {
+  width: 100%;
+  padding: 0.75rem 0;
+  box-sizing: border-box;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.03125rem solid rgba(0, 0, 0, 0.05);
+}
+.scroll-view .coin-list .coin-list-main .cell-card .cell-row:last-of-type {
+  border-bottom: none;
+}
+.scroll-view .coin-list .coin-list-main .cell-card .cell-row .cell-row-left {
+  display: flex;
+  align-items: center;
+}
+.scroll-view .coin-list .coin-list-main .cell-card .cell-row .cell-row-left uni-image {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+}
+.scroll-view .coin-list .coin-list-main .cell-card .cell-row .cell-row-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.scroll-view .coin-list .account {
+  background: transparent;
+}
+.scroll-view .coin-list .account .cell {
+  background: var(--white);
+  border-radius: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+.scroll-view .coin-list .account .cell:last-of-type {
+  margin-bottom: 0;
+}
+.scroll-view .coin-list .account .cell uni-image {
+  width: 1.375rem !important;
+  height: 1.375rem !important;
+  margin-right: 0.625rem;
+  border-radius: 0 !important;
+}
+.not-date {
+  width: 100%;
+  height: 12.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.refresher-box {
+  width: 100%;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.refresher-box uni-image {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.625rem;
+}
+.animation {
+  animation: imgAnima 1s linear infinite;
+}
+@keyframes imgAnima {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.fui-tabs__text {
+  font-weight: 600 !important;
+  transform: scale(1);
+}
+.fui-tabs__item {
+  padding-right: 0.3125rem;
+}
