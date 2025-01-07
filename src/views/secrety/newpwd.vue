@@ -40,12 +40,15 @@
         ></uni-view
       ><uni-view class="label-box"
         ><uni-view class="text-cell"
-          ><uni-text class="font-12 color-gray"><span>原登入密码</span></uni-text></uni-view
+          ><uni-text class="font-12 color-gray"
+            ><span>原登入密码{{ form.oldPwd }}</span></uni-text
+          ></uni-view
         ><uni-view class="input-box"
           ><uni-input
             ><div class="uni-input-wrapper">
               <input
-                type="password"
+                v-model="form.oldPwd"
+                :type="oldPwd ? 'password' : 'text'"
                 maxlength="140"
                 placeholder="请输入旧密码"
                 enterkeyhint="done"
@@ -53,9 +56,10 @@
                 autocomplete="off"
               /></div></uni-input
           ><uni-text
+            @click="oldPwd = !oldPwd"
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 1.1875rem; font-weight: normal"
-            ><span></span></uni-text
+            ><span v-if="oldPwd"></span> <span v-else></span></uni-text
           ></uni-view
         ></uni-view
       ><uni-view class="label-box"
@@ -65,7 +69,9 @@
           ><uni-input
             ><div class="uni-input-wrapper">
               <input
-                type="password"
+                v-model="form.newPwd"
+                @input="handleInputChange"
+                :type="newPwd ? 'password' : 'text'"
                 maxlength="140"
                 placeholder="请输入新密码"
                 enterkeyhint="done"
@@ -73,9 +79,10 @@
                 autocomplete="off"
               /></div></uni-input
           ><uni-text
+            @click="newPwd = !newPwd"
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 1.1875rem; font-weight: normal"
-            ><span></span></uni-text
+            ><span v-if="newPwd"></span> <span v-else></span></uni-text
           ></uni-view
         ></uni-view
       ><uni-view class="label-box"
@@ -83,23 +90,23 @@
           ><uni-text
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 0.9375rem; font-weight: normal"
-            ><span></span></uni-text
+            ><span v-if="rules[0]"></span><span v-else></span></uni-text
           ><uni-text class="font-12 color-gray ml-5"><span>8-14位元字元</span></uni-text></uni-view
         ><uni-view class="text-cell mt-5"
           ><uni-text
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 0.9375rem; font-weight: normal"
-            ><span></span></uni-text
+            ><span v-if="rules[1]"></span><span v-else></span></uni-text
           ><uni-text class="font-12 color-gray ml-5"
-            ><span>至少包含一个数字</span></uni-text
+            ><span>至少包含1个数字</span></uni-text
           ></uni-view
         ><uni-view class="text-cell mt-5"
           ><uni-text
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 0.9375rem; font-weight: normal"
-            ><span></span></uni-text
+            ><span v-if="rules[2]"></span><span v-else></span></uni-text
           ><uni-text class="font-12 color-gray ml-5"
-            ><span>至少包含一个大写字母</span></uni-text
+            ><span>至少包含1个大写字母</span></uni-text
           ></uni-view
         ></uni-view
       ><uni-view class="label-box"
@@ -109,7 +116,8 @@
           ><uni-input
             ><div class="uni-input-wrapper">
               <input
-                type="password"
+                v-model="form.NPwd"
+                :type="NPwd ? 'password' : 'text'"
                 maxlength="140"
                 enterkeyhint="done"
                 placeholder="请再输入新密码"
@@ -117,9 +125,10 @@
                 autocomplete="off"
               /></div></uni-input
           ><uni-text
+            @click="NPwd = !NPwd"
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 1.1875rem; font-weight: normal"
-            ><span></span></uni-text
+            ><span v-if="NPwd"></span> <span v-else></span></uni-text
           ></uni-view
         ></uni-view
       ><uni-view class="label-button"
@@ -133,6 +142,7 @@
             background: var(--background-secondary);
           "
           ><uni-button
+            @click="submit"
             class="fui-button fui-button__flex-1"
             style="
               width: 100%;
@@ -154,5 +164,62 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { useUserStore } from '@/store/user'
+import { updateLoginPwd } from '@/api/user'
 const router = useRouter()
+const userStore = useUserStore()
+const form = ref({
+  newPwd: '',
+  oldPwd: '',
+  NPwd: ''
+})
+const newPwd = ref(true)
+const oldPwd = ref(true)
+const NPwd = ref(true)
+const rules = ref([0, 0, 0])
+const handleInputChange = (e) => {
+  if (e.target.value.length >= 8 && e.target.value.length <= 14) {
+    rules.value[0] = 1
+  }
+  if (e.target.value.search(/[0-9]/) >= 0) {
+    rules.value[1] = 1
+  }
+  if (e.target.value.search(/[A-Z]/) >= 0) {
+    rules.value[2] = 1
+  }
+}
+const submit = () => {
+  let flag = rules.value.every((item) => item === 1)
+  if (!form.value.oldPwd) {
+    showToast('请输入原登入密码')
+    return
+  }
+  if (!form.value.newPwd) {
+    showToast('请输入新登入密码')
+    return
+  }
+  if (!form.value.NPwd) {
+    showToast('请输入确认新密码')
+    return
+  }
+  if (form.value.newPwd !== form.value.NPwd) {
+    showToast('两次密码不一致')
+    return
+  }
+  if (!flag) {
+    showToast('密码格式不正确')
+    return
+  }
+  updateLoginPwd(form.value.oldPwd, form.value.newPwd, userStore.userInfo.user.userId).then(
+    (res) => {
+      if (res.code == '200') {
+        showToast('修改密码成功！')
+        router.back()
+      } else {
+        showToast(res.msg)
+      }
+    }
+  )
+}
 </script>

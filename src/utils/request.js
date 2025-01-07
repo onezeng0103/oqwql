@@ -8,7 +8,7 @@ let _axios = null
  * 初始化
  */
 // export const baseURL = __config._BASE_API
-export const baseURL = 'https://cdex.top'
+export const baseURL = 'https://api.cdex.top'
 
 // export const initAxios = () => {
 if (!_axios) {

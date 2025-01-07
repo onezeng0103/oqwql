@@ -128,7 +128,8 @@
                     ><span>身份确认</span></uni-text
                   ></uni-view
                 ><uni-view class="flex align-center"
-                  ><uni-text class="font-12 color-gray"><span>未确认</span></uni-text
+                  ><uni-text class="font-12 color-gray" v-if="primaryAuth != 1"
+                    ><span>未确认</span></uni-text
                   ><uni-text
                     class="fui-icon"
                     style="
@@ -322,6 +323,9 @@ const { userInfo } = storeToRefs(userStore)
 const path = computed(() => {
   let tempPath = mainStore.getLogoList?.logo || mainStore.getLogoList?.logoD
   return tempPath
+})
+const primaryAuth = computed(() => {
+  return userInfo.value.detail?.auditStatusPrimary
 })
 const VITE_APP_EXCHANGE_NAME = import.meta.env.VITE_APP_EXCHANGE_NAME
 const handleClose = () => {

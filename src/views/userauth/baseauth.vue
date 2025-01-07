@@ -28,45 +28,14 @@
           ><uni-view class="fui-nav__right"></uni-view></uni-view></uni-view></uni-view
     ><uni-view class="baseAuth-container"
       ><uni-view class="label"
-        ><uni-text class="font-13 color-black"><span>国家地区</span></uni-text
-        ><uni-view class="label-box"
-          ><uni-text class="font-13 color-black font-weight"><span>HONG KONG</span></uni-text
-          ><uni-image class="down-icon"
-            ><div
-              style="
-                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAANlBMVEUAAACFio+Hh4+DiI+Fh4+GiY+Fio+FiY+Fio+AiI+Gio+GiY+EiY+Dho+Fio+FiY+DiI+FiY+7aaZ0AAAAEXRSTlMA7yCAYN8w36AQv7BwSM/PkFBScp4AAACaSURBVFjD7dRBDsMgDETRMQ4USNLW979sD9BKMxFdRX4H+AvEGCmllNKdld2Csl5op4bkwUo9RJOELERGQyoSmiHa2WNbSKyAaCZ1GqgtBBsIsXRA4kE4RM46svd6hy+l45JJPqJsPOOn18BFo5LrISuVdfQS6ciKyUPlA9aHqs/uBCGWNixxbRh6ybHMa4Qd+IezDaSUUkrfPvkDLTUq2oYZAAAAAElFTkSuQmCC');
-                background-position: 0% 0%;
-                background-size: 100% 100%;
-              "
-            ></div>
-            <span></span
-            ><img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAANlBMVEUAAACFio+Hh4+DiI+Fh4+GiY+Fio+FiY+Fio+AiI+Gio+GiY+EiY+Dho+Fio+FiY+DiI+FiY+7aaZ0AAAAEXRSTlMA7yCAYN8w36AQv7BwSM/PkFBScp4AAACaSURBVFjD7dRBDsMgDETRMQ4USNLW979sD9BKMxFdRX4H+AvEGCmllNKdld2Csl5op4bkwUo9RJOELERGQyoSmiHa2WNbSKyAaCZ1GqgtBBsIsXRA4kE4RM46svd6hy+l45JJPqJsPOOn18BFo5LrISuVdfQS6ciKyUPlA9aHqs/uBCGWNixxbRh6ybHMa4Qd+IezDaSUUkrfPvkDLTUq2oYZAAAAAElFTkSuQmCC"
-              draggable="false" /></uni-image></uni-view></uni-view
-      ><uni-view class="label"
-        ><uni-text class="font-13 color-black"><span>证件类型</span></uni-text
-        ><uni-view class="label-box"
-          ><uni-text class="font-13 color-black font-weight"><span>护照</span></uni-text
-          ><uni-image class="down-icon"
-            ><div
-              style="
-                background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAANlBMVEUAAACFio+Hh4+DiI+Fh4+GiY+Fio+FiY+Fio+AiI+Gio+GiY+EiY+Dho+Fio+FiY+DiI+FiY+7aaZ0AAAAEXRSTlMA7yCAYN8w36AQv7BwSM/PkFBScp4AAACaSURBVFjD7dRBDsMgDETRMQ4USNLW979sD9BKMxFdRX4H+AvEGCmllNKdld2Csl5op4bkwUo9RJOELERGQyoSmiHa2WNbSKyAaCZ1GqgtBBsIsXRA4kE4RM46svd6hy+l45JJPqJsPOOn18BFo5LrISuVdfQS6ciKyUPlA9aHqs/uBCGWNixxbRh6ybHMa4Qd+IezDaSUUkrfPvkDLTUq2oYZAAAAAElFTkSuQmCC');
-                background-position: 0% 0%;
-                background-size: 100% 100%;
-              "
-            ></div>
-            <span></span
-            ><img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAANlBMVEUAAACFio+Hh4+DiI+Fh4+GiY+Fio+FiY+Fio+AiI+Gio+GiY+EiY+Dho+Fio+FiY+DiI+FiY+7aaZ0AAAAEXRSTlMA7yCAYN8w36AQv7BwSM/PkFBScp4AAACaSURBVFjD7dRBDsMgDETRMQ4USNLW979sD9BKMxFdRX4H+AvEGCmllNKdld2Csl5op4bkwUo9RJOELERGQyoSmiHa2WNbSKyAaCZ1GqgtBBsIsXRA4kE4RM46svd6hy+l45JJPqJsPOOn18BFo5LrISuVdfQS6ciKyUPlA9aHqs/uBCGWNixxbRh6ybHMa4Qd+IezDaSUUkrfPvkDLTUq2oYZAAAAAElFTkSuQmCC"
-              draggable="false" /></uni-image></uni-view></uni-view
-      ><uni-view class="label"
         ><uni-text class="font-13 color-black"><span>姓名</span></uni-text
         ><uni-view class="label-box"
           ><uni-input class="font-13 font-weight"
             ><div class="uni-input-wrapper">
-              <div class="uni-input-placeholder placeholder" style="display: none">请输入姓名</div>
               <input
+                v-model="formData.userName"
                 type="text"
+                placeholder="请输入姓名"
                 maxlength="140"
                 enterkeyhint="done"
                 class="uni-input-input"
@@ -78,6 +47,7 @@
           ><uni-input class="font-13 font-weight"
             ><div class="uni-input-wrapper">
               <input
+                v-model="formData.number"
                 type="text"
                 maxlength="140"
                 placeholder="请输入证件号码"
@@ -104,10 +74,9 @@
           background: var(--color-gray-bg);
         "
         ><uni-button
-          id=""
+          v-if="primaryAuth == null || primaryAuth == 2"
+          @click="submit"
           class="fui-button fui-button__flex-1"
-          app-parameter=""
-          scope=""
           style="
             width: 100%;
             height: 2.75rem;
@@ -119,7 +88,7 @@
             font-size: 0.875rem;
             color: var(--color-text-dark-gray);
           "
-          >审核中</uni-button
+          >确定</uni-button
         ></uni-view
       ></uni-view
     ></uni-view
@@ -127,5 +96,43 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { uploadKYC } from '@/api/user'
+import { useUserStore } from '@/store/user'
 const router = useRouter()
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
+const formData = ref({
+  userName: '',
+  number: ''
+})
+const primaryAuth = computed(() => {
+  return userInfo.value.detail?.auditStatusPrimary
+})
+
+const submit = () => {
+  if (!formData.value.userName) {
+    showToast('请输入姓名')
+    return
+  }
+  if (!formData.value.number) {
+    showToast('请输入证件号码')
+    return
+  }
+  let params = `realName=${formData.value.userName}&idCard=${formData.value.number}&flag=1`
+  uploadKYC(params).then((res) => {
+    if (res.code == '200') {
+      showToast('提交成功，请耐心等待....')
+    } else {
+      showToast(res.msg)
+    }
+    router.back()
+  })
+}
+onMounted(() => {
+  if (primaryAuth.value == 1) {
+    formData.value.userName = userInfo.value.detail?.realName
+    formData.value.number = userInfo.value.detail?.idCard
+  }
+})
 </script>

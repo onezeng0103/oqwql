@@ -30,21 +30,21 @@
       ><uni-view class="label"
         ><uni-view class="label-title"
           ><uni-text class="font-14 color-black font-weight"><span>Lv.1 基础认证</span></uni-text
-          ><uni-view class="label-title-right"
-            ><uni-image
-              ><div
-                style="
-                  background-image: none;
-                  background-position: 0% 0%;
-                  background-size: 100% 100%;
-                "
-              ></div>
-              <span></span></uni-image
-            ><uni-text class="font-13 color-green font-weight"
-              ><span>审核中</span></uni-text
-            ></uni-view
-          ></uni-view
-        ><uni-view class="label-card"
+          ><uni-view class="label-title-right">
+            <uni-text class="font-13 color-green font-weight">
+              <span v-if="primaryAuth == null">未认证</span>
+              <span v-if="primaryAuth == 1">
+                <img
+                  style="width: 0.875rem; height: 0.875rem; margin-right: 0.25rem"
+                  src="../../assets/img/authsuc.webp"
+                />已认证</span
+              >
+              <span v-if="primaryAuth == 3">审核中</span>
+              <span v-if="primaryAuth == 2">审核失败</span>
+            </uni-text>
+          </uni-view>
+        </uni-view>
+        <uni-view class="label-card"
           ><uni-text class="font-13 color-dark description"
             ><span>极速审核，快速完成基础认证，获得更高提领额度。</span></uni-text
           ><uni-view class="label-card-button"
@@ -58,7 +58,7 @@
                 background: var(--blue);
               "
               ><uni-button
-                @click="router.push('/userauth/baseauth')"
+                @click="goBaseauth"
                 class="fui-button fui-button__flex-1"
                 style="
                   width: 100%;
@@ -84,18 +84,17 @@
         ><uni-view class="label-title"
           ><uni-text class="font-14 color-black font-weight"><span>Lv.2 高级认证</span></uni-text
           ><uni-view class="label-title-right"
-            ><uni-image
-              ><div
-                style="
-                  background-image: none;
-                  background-position: 0% 0%;
-                  background-size: 100% 100%;
-                "
-              ></div>
-              <span></span></uni-image
-            ><uni-text class="font-13 color-green font-weight"
-              ><span>审核中</span></uni-text
-            ></uni-view
+            ><uni-text class="font-13 color-green font-weight">
+              <span v-if="advancedAuth == null">未认证</span>
+              <span v-if="advancedAuth == 1">
+                <img
+                  style="width: 0.875rem; height: 0.875rem; margin-right: 0.25rem"
+                  src="../../assets/img/authsuc.webp"
+                />已认证</span
+              >
+              <span v-if="advancedAuth == 3">审核中</span>
+              <span v-if="advancedAuth == 2">审核失败</span>
+            </uni-text></uni-view
           ></uni-view
         ><uni-view class="label-card"
           ><uni-text class="font-13 color-dark description"
@@ -104,7 +103,7 @@
             ></uni-text
           ><uni-view class="label-card-button"
             ><uni-view
-              class="fui-button__wrap fui-button__flex-1 fui-button__opacity"
+              class="fui-button__wrap fui-button__flex-1"
               style="
                 width: 100%;
                 height: 2.75rem;
@@ -112,7 +111,9 @@
                 border-radius: 0.5rem;
                 background: transparent;
               "
-              ><uni-button
+            >
+              <uni-button
+                v-if="primaryAuth != 1"
                 class="fui-button fui-button__flex-1"
                 disabled="true"
                 style="
@@ -129,9 +130,30 @@
                   class="fui-button__text"
                   style="font-size: 0.875rem; line-height: 0.875rem; color: rgb(255, 255, 255)"
                   ><span>请先完成基础认证</span></uni-text
+                >
+              </uni-button>
+              <uni-button
+                v-else
+                @click="goAuthhight"
+                class="fui-button fui-button__flex-1"
+                style="
+                  width: 100%;
+                  height: 2.75rem;
+                  line-height: 2.75rem;
+                  background: var(--blue);
+                  border-width: 0px;
+                  border-color: var(--blue);
+                  border-radius: 0.5rem;
+                  font-size: 0.875rem;
+                  color: rgb(255, 255, 255);
+                "
+                ><uni-text
+                  class="fui-button__text"
+                  style="font-size: 0.875rem; line-height: 0.875rem; color: rgb(255, 255, 255)"
+                  ><span>去认证</span></uni-text
                 ></uni-button
-              ></uni-view
-            ></uni-view
+              >
+            </uni-view></uni-view
           ></uni-view
         ></uni-view
       ><uni-view class="label"
@@ -156,5 +178,33 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { useUserStore } from '@/store/user'
 const router = useRouter()
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
+const primaryAuth = computed(() => {
+  return userInfo.value.detail?.auditStatusPrimary
+})
+const advancedAuth = computed(() => {
+  return userInfo.value.detail?.auditStatusAdvanced
+})
+const goBaseauth = () => {
+  if (primaryAuth.value == 3) {
+    showToast('请耐心等待，您的审核中的身份认证正在进行中。')
+    return
+  }
+  router.push('/userauth/baseauth')
+}
+const goAuthhight = () => {
+  if (advancedAuth.value == 3) {
+    showToast('请耐心等待，您的审核中的身份认证正在进行中。')
+    return
+  }
+  if (advancedAuth.value == 1) {
+    showToast('您已完成高级认证')
+    return
+  }
+  router.push('/userauth/authhight')
+}
 </script>

@@ -89,7 +89,8 @@
 </template>
 <script setup>
 import { getAreaCode } from '@/api/user'
-const current = ref(localStorage.getItem('LANGUAGE'))
+import { storageDict } from '@/config/dict'
+const current = ref(localStorage.getItem(storageDict.LANGUAGE))
 const props = defineProps({
   showBottom: {
     type: Boolean,
@@ -97,7 +98,6 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(['close'])
-
 // 区号列表
 const areaList = ref([])
 // 获取区号

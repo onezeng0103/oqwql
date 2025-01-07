@@ -33,6 +33,7 @@
           ><uni-input class="font-14 color-black"
             ><div class="uni-input-wrapper">
               <input
+                v-model="formData.email"
                 type="text"
                 maxlength="140"
                 placeholder="请输入信箱帐号"
@@ -46,20 +47,29 @@
           ><uni-input class="font-14 color-black"
             ><div class="uni-input-wrapper">
               <input
+                v-model="formData.code"
                 type="text"
                 maxlength="140"
                 placeholder="请输入验证码"
                 enterkeyhint="done"
                 class="uni-input-input"
                 autocomplete="off"
-              /></div></uni-input
-          ><uni-view class="captcha"
-            ><uni-text class="font-13 color-primary"><span>取得验证码</span></uni-text></uni-view
-          ></uni-view
-        ></uni-view
-      ></uni-view
-    ><uni-view class="footer-button"
-      ><uni-view
+              />
+            </div>
+          </uni-input>
+          <uni-view v-if="flag" class="captcha">
+            <van-count-down :time="time" format="ss" @finish="finish" />
+          </uni-view>
+          <uni-view v-else class="captcha">
+            <uni-text class="font-13 color-primary" @click="send">
+              <span>获取验证码</span>
+            </uni-text>
+          </uni-view>
+        </uni-view>
+      </uni-view>
+    </uni-view>
+    <uni-view class="footer-button">
+      <uni-view
         class="fui-button__wrap fui-button__flex-1"
         style="
           width: 100%;
@@ -69,10 +79,8 @@
           background: var(--background-secondary);
         "
         ><uni-button
-          id=""
+          @click="submit"
           class="fui-button fui-button__flex-1"
-          app-parameter=""
-          scope=""
           style="
             width: 100%;
             height: 2.4375rem;
@@ -96,5 +104,43 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { emailCode } from '@/api/user'
 const router = useRouter()
+const formData = ref({
+  email: '',
+  code: ''
+})
+const flag = ref(false)
+const time = ref(0)
+const send = () => {
+  // 邮箱发送验证码
+  if (formData.value.email == '') {
+    showToast('请输入邮箱')
+    return
+  }
+  emailCode('BIND', formData.value.email).then((res) => {
+    if (res.code == '200') {
+      flag.value = true
+      time.value = 60 * 1000
+      showToast(res.msg)
+    } else {
+      showToast(res.msg)
+    }
+  })
+}
+// 倒计时结束
+const finish = () => {
+  flag.value = false
+}
+const submit = () => {
+  if (!formData.value.email) {
+    showToast('请输入邮箱')
+    return
+  }
+  if (!formData.value.code) {
+    showToast('请输入验证码')
+    return
+  }
+}
 </script>

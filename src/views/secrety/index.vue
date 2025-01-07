@@ -34,8 +34,8 @@
           ><uni-text class="font-14 color-black"><span>邮箱验证</span></uni-text></uni-view
         ><uni-view class="flex align-center justify-end cell-right"
           ><uni-text class="font-14 color-gray">
-            <span v-if="!user.email">未认证</span>
-            <span v-else>{{ user.email }}</span></uni-text
+            <span v-if="!user?.email">未认证</span>
+            <span v-else>{{ user?.email }}</span></uni-text
           ><uni-text
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 1.0625rem; font-weight: normal"
@@ -49,8 +49,8 @@
           ><uni-text class="font-14 color-black"><span>手机验证</span></uni-text></uni-view
         ><uni-view class="flex align-center justify-end cell-right"
           ><uni-text class="font-14 color-gray">
-            <span v-if="!user.phone">未认证</span>
-            <span v-else>{{ user.phone }}</span> </uni-text
+            <span v-if="!user?.phone">未认证</span>
+            <span v-else>{{ user?.phone }}</span> </uni-text
           ><uni-text
             class="fui-icon"
             style="color: var(--content-tertiary); font-size: 1.0625rem; font-weight: normal"
@@ -80,6 +80,8 @@ import { useUserStore } from '@/store/user'
 const router = useRouter()
 const userStore = useUserStore()
 const user = computed(() => {
+  console.log(userStore.userInfo)
+
   return userStore.userInfo.user
 })
 const handlePush = (type) => {

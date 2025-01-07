@@ -18,5 +18,6 @@ declare module 'vue' {
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanSwiper: typeof import('vant/es')['Swiper']
+    VanUploader: typeof import('vant/es')['Uploader']
   }
 }

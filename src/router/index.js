@@ -72,6 +72,11 @@ const router = createRouter({
       component: () => import('../views/userauth/baseauth.vue')
     },
     {
+      path: '/userauth/authhight',
+      name: 'authhight',
+      component: () => import('../views/userauth/authhight.vue')
+    },
+    {
       path: '/flashExchange',
       name: 'flashExchange',
       component: () => import('../views/flashExchange/index.vue')
