@@ -90,7 +90,7 @@
                 /> </uni-view
               ><uni-text class="font-12 color-black"><span>充值</span></uni-text></uni-view
             ><uni-view class="menu-item"
-              ><uni-view class="image-box" type="invite"
+              ><uni-view class="image-box" type="invite" @click="router.push('/invaite')"
                 ><img
                   src="../../assets/img/invite-white.png"
                   alt=""
@@ -98,7 +98,7 @@
                 /> </uni-view
               ><uni-text class="font-12 color-black"><span>邀请好友</span></uni-text></uni-view
             ><uni-view class="menu-item"
-              ><uni-view class="image-box"
+              ><uni-view class="image-box" @click="router.push('/help')"
                 ><img
                   src="../../assets/img/help-center-dark.png"
                   alt=""

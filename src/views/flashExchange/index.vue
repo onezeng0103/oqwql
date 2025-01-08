@@ -31,6 +31,7 @@
       ><div class="uni-scroll-view">
         <div class="uni-scroll-view" style="overflow: hidden auto">
           <div class="uni-scroll-view-content">
+            {{ list1 }}{{ list1Coin }}
             <uni-view class="flashExchangeCompareBox"
               ><uni-view class="flashExchangeCompareBoxL"
                 ><uni-view class="flashExchangeCurrencyBox"
@@ -82,7 +83,7 @@
                     alt=""
                   /> </uni-view></uni-view
               ><uni-view class="flashExchangeCompareBoxR"
-                ><uni-view class="flashExchangeCurrencyBox"
+                ><uni-view class="flashExchangeCurrencyBox" @click="showBottom = true"
                   ><uni-image class="currencyIcon" style="height: 28px"
                     ><div
                       style="
@@ -265,8 +266,76 @@
       </div>
     </uni-scroll-view>
   </uni-view>
+  <CurrencyList :showBottom="showBottom" @close="handleClose" :list="list1" />
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user/index'
+import { useAccountStore } from '@/store/account/index'
+import CurrencyList from './currencyList.vue'
 const router = useRouter()
+const userStore = useUserStore()
+const accountStore = useAccountStore()
+userStore.getUserInfo()
+const { asset } = storeToRefs(userStore)
+const showBottom = ref(false)
+const handleClose = () => {
+  showBottom.value = false
+}
+const list1 = ref([])
+const list1Coin = ref([])
+const list2 = ref([])
+const list2Coin = ref([])
+const swapCoinList = ref([])
+const list1Current = ref({})
+const list2Current = ref({})
+const init = async () => {
+  await accountStore.getSwapCoinList()
+  let template1 = []
+  asset.value.forEach((item, index) => {
+    let obj = {}
+    if (item.type == '1') {
+      obj['id'] == index + 1
+      obj['amount'] = item.availableAmount
+
+      if (item.symbol == 'usdt') {
+        obj['coin'] = 'usdt'
+        obj['icon'] = 'usdt'
+        template1.unshift(obj)
+      }
+      if (item.symbol != 'usdt') {
+        obj['coin'] = item.symbol?.replace('usdt', '').trim()
+        obj['icon'] = item.loge
+        template1.push(obj)
+      }
+    }
+  })
+  swapCoinList.value.forEach((item) => {
+    template1.forEach((items) => {
+      if (items.coin == item.coin) {
+        item['amount'] = items.amount
+      }
+    })
+  })
+  list1.value = template1
+  if (['gmtoin2'].includes(__config._APP_ENV)) {
+    list1Current.value = template1.find((item, idx) => {
+      return item.coin === 'btc'
+    })
+  } else {
+    list1Current.value = template1[0]
+  }
+  // list1Current.value = template1[0]
+  list1Coin.value = list1Current.value?.coin
+  list2.value = swapCoinList.value?.filter((item) => {
+    return item.coin != list1Current.value?.coin
+  })
+  list2Current.value = swapCoinList.value?.filter((item) => {
+    return item.coin != list1Current.value?.coin
+  })[0]
+  list2Coin.value = list2Current.value?.coin
+}
+onMounted(() => {
+  init()
+})
 </script>

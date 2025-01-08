@@ -22,6 +22,11 @@ const router = createRouter({
       component: () => import('../views/register/index.vue')
     },
     {
+      path: '/search',
+      name: 'search',
+      component: () => import('../views/search/index.vue')
+    },
+    {
       path: '/forget',
       name: 'forget',
       component: () => import('../views/forget/index.vue')
@@ -105,6 +110,16 @@ const router = createRouter({
       path: '/wallet',
       name: 'wallet',
       component: () => import('../views/wallet/index.vue')
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: () => import('../views/help/index.vue')
+    },
+    {
+      path: '/helpDetail/:id',
+      name: 'HelpDetail',
+      component: () => import('../views/help/helpDetail.vue')
     }
   ]
 })

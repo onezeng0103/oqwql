@@ -23,48 +23,55 @@
             ><uni-text
               class="fui-nav__title-text"
               style="font-size: 16px; color: var(--content-primary); font-weight: 500"
-              ><span>修改 手機驗證</span></uni-text
+              ><span>{{ phone ? '修改' : '设置' }} 手机验证</span></uni-text
             ></uni-view
           ><uni-view class="fui-nav__right"></uni-view></uni-view></uni-view></uni-view
     ><uni-view class="phoneAuth-container"
       ><uni-view class="label"
-        ><uni-text class="font-13 color-gray"><span>手機號碼</span></uni-text
+        ><uni-text class="font-13 color-gray"><span>手机号码</span></uni-text
         ><uni-view class="label-input" type="phone"
-          ><uni-view class="code-box"
-            ><uni-text class="font-14 color-black"><span>+01</span></uni-text>
+          ><uni-view class="code-box" @click="showBottom = true"
+            ><uni-text class="font-14 color-black"
+              ><span>+{{ phoneCode }}</span></uni-text
+            >
             <img
               src="../../../assets/img/down-dark.png"
               style="width: 0.8125rem; margin-left: 0.3125rem"
             /> </uni-view
           ><uni-input class="font-14 color-black"
             ><div class="uni-input-wrapper">
-              <div class="uni-input-placeholder placeholder">請輸入手機號碼</div>
               <input
+                v-model="formData.phone"
                 type="text"
                 maxlength="140"
-                step=""
+                placeholder="请输入手机号码"
                 enterkeyhint="done"
                 class="uni-input-input"
                 autocomplete="off"
               /></div></uni-input></uni-view></uni-view
       ><uni-view class="label"
-        ><uni-text class="font-13 color-gray"><span>手機驗證碼</span></uni-text
+        ><uni-text class="font-13 color-gray"><span>手机验证码</span></uni-text
         ><uni-view class="label-input" type="captcha"
           ><uni-input class="font-14 color-black"
             ><div class="uni-input-wrapper">
-              <div class="uni-input-placeholder placeholder">請輸入驗證碼</div>
               <input
                 type="text"
                 maxlength="140"
-                step=""
+                placeholder="请输入手机验证码"
                 enterkeyhint="done"
                 class="uni-input-input"
                 autocomplete="off"
-              /></div></uni-input
-          ><uni-view class="captcha"
-            ><uni-text class="font-13 color-primary"><span>取得驗證碼</span></uni-text></uni-view
-          ></uni-view
-        ></uni-view
+              /></div
+          ></uni-input>
+          <uni-view v-if="flag" class="captcha">
+            <van-count-down :time="time" format="ss" @finish="finish" />
+          </uni-view>
+          <uni-view v-else class="captcha">
+            <uni-text class="font-13 color-primary" @click="send">
+              <span>获取验证码</span>
+            </uni-text>
+          </uni-view>
+        </uni-view></uni-view
       ></uni-view
     ><uni-view class="footer-button"
       ><uni-view
@@ -77,6 +84,7 @@
           background: var(--background-secondary);
         "
         ><uni-button
+          @click="submit"
           class="fui-button fui-button__flex-1"
           style="
             width: 100%;
@@ -98,8 +106,65 @@
       ></uni-view
     ></uni-view
   >
+  <PhonePopup :showBottom="showBottom" @close="handleClose" />
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
+import { useUserStore } from '@/store/user'
+import { mobileCode, mobileBind } from '@/api/user'
+import PhonePopup from '@/components/phonePopup/index.vue'
 const router = useRouter()
+const userStore = useUserStore()
+const phone = computed(() => {
+  return userStore.userInfo.user?.phone
+})
+const phoneCode = ref('852')
+const showBottom = ref(false)
+const handleClose = (value) => {
+  if (value.phoneCode) {
+    phoneCode.value = value.phoneCode
+  }
+  showBottom.value = false
+}
+const formData = ref({
+  phone: '',
+  code: ''
+})
+const flag = ref(false)
+const time = ref(0)
+const send = () => {
+  // 邮箱发送验证码
+  if (formData.value.phone == '') {
+    showToast('请输入手机号')
+    return
+  }
+  mobileCode('BIND', phoneCode.value + formData.value.phone).then((res) => {
+    if (res.code == '200') {
+      flag.value = true
+      time.value = 60 * 1000
+      showToast(res.msg)
+    } else {
+      showToast(res.msg)
+    }
+  })
+}
+const submit = () => {
+  if (!formData.value.phone) {
+    showToast('请输入手机号')
+    return
+  }
+  if (!formData.value.code) {
+    showToast('请输入验证码')
+    return
+  }
+  mobileBind(mobile.value, code.value).then((res) => {
+    if (res.code == '200') {
+      showToast(res.msg)
+      router.back()
+    } else {
+      showToast(res.msg)
+    }
+  })
+}
 </script>

@@ -29,7 +29,7 @@
                 </div>
               </uni-view>
             </uni-view>
-            <uni-view class="nav-bar-search bg-gray">
+            <uni-view class="nav-bar-search bg-gray" @click="router.push('/search')">
               <uni-text
                 class="fui-icon"
                 style="color: var(--color-text-dark-gray); font-size: 1rem; font-weight: normal"
@@ -41,7 +41,7 @@
               ></uni-view
             >
             <uni-view class="nav-bar-button">
-              <uni-view class="bar-button">
+              <uni-view class="bar-button" @click="handleKeFu">
                 <img
                   width="100%"
                   height="100%"
@@ -537,7 +537,9 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user/index'
 import { useMainStore } from '@/store/index.js'
 import { publiceNotice } from '@/api/common/index.js'
+import { dispatchCustomEvent } from '@/utils'
 import LeftPopup from './component/leftPopup.vue'
+
 const router = useRouter()
 const userStore = useUserStore()
 const mainStore = useMainStore()
@@ -555,7 +557,9 @@ const publiceNoticeFun = async () => {
   const res = await publiceNotice('ACTIVITY_NOTICE', 'HOME_ACTIVITY')
   imgList.value = res?.data.map((item) => item.imgUrl)
 }
-
+const handleKeFu = () => {
+  dispatchCustomEvent('event_serviceChange')
+}
 onMounted(() => {
   publiceNoticeFun()
 })

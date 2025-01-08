@@ -15,3 +15,22 @@
     ><uni-view class="no-data-name">暂无资料</uni-view></uni-view
   >
 </template>
+<style lang="scss" scoped>
+.no-data {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .no-data-img {
+    width: 6.25rem;
+    height: 6.25rem;
+  }
+  .no-data-name {
+    margin-top: 0.625rem;
+    font-size: 0.875rem;
+    color: var(--color-text-dark-gray);
+  }
+}
+</style>

@@ -23,7 +23,7 @@
             ><uni-text
               class="fui-nav__title-text"
               style="font-size: 16px; color: var(--content-primary); font-weight: 500"
-              ><span>修改 邮箱验证</span></uni-text
+              ><span>{{ email ? '修改' : '设置' }} 邮箱验证</span></uni-text
             ></uni-view
           ><uni-view class="fui-nav__right"></uni-view></uni-view></uni-view></uni-view
     ><uni-view class="phoneAuth-container"
@@ -105,8 +105,13 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { showToast } from 'vant'
+import { useUserStore } from '@/store/user'
 import { emailCode } from '@/api/user'
 const router = useRouter()
+const userStore = useUserStore()
+const email = computed(() => {
+  return userStore.userInfo.user?.email
+})
 const formData = ref({
   email: '',
   code: ''
@@ -142,5 +147,13 @@ const submit = () => {
     showToast('请输入验证码')
     return
   }
+  emailBind(formData.value.email, formData.value.code).then((res) => {
+    if (res.code == '200') {
+      showToast(res.msg)
+      router.back()
+    } else {
+      showToast(res.msg)
+    }
+  })
 }
 </script>

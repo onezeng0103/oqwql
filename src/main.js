@@ -6,6 +6,7 @@ import { setupI18n } from './locales/index.js'
 import App from './App.vue'
 import router from './router'
 import Vant from 'vant'
+import { Icon } from 'vant'
 import 'vant/lib/index.css'
 import { useTradeStore } from '@/store/trade/index'
 import { useMainStore } from '@/store/index.js'
@@ -17,6 +18,7 @@ pinia.use(piniaPluginPersistedstate)
 app.component('NoData', NoData)
 app.use(router)
 app.use(Vant)
+app.use(Icon)
 // 获取币种列表
 const tradeStore = useTradeStore()
 const mainStore = useMainStore()

@@ -80,8 +80,6 @@ import { useUserStore } from '@/store/user'
 const router = useRouter()
 const userStore = useUserStore()
 const user = computed(() => {
-  console.log(userStore.userInfo)
-
   return userStore.userInfo.user
 })
 const handlePush = (type) => {

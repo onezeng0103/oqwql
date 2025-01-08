@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { storageDict } from '@/config/dict'
 import { setLanguage } from '@/locales/index.js'
-
+import { useUserStore } from './user'
 import { getPlatFormConfigApi, getSettingConfigApi } from '@/api/common/index.js'
 import { TIMEZONE_DICT } from '@/config/index'
 import { getUserRechageNewApi } from '@/api/account'
@@ -128,6 +128,17 @@ export const useMainStore = defineStore('main', {
     //vip等级说明
     getVIPRule: (state) => {
       return state.settingConfig.VIP_DIRECTIONS_SETTING || {}
+    },
+    // 获取客服配置
+    getCustomerServiceList: (state) => {
+      // 美洽
+      let tempObj = { ...state.settingConfig.SUPPORT_STAFF_SETTING[0] }
+      tempObj.getUrl = () => {
+        const userStore = useUserStore()
+        let userId = userStore.userInfo.user?.userId || ''
+        return `${tempObj.url}&metadata={"name":"UID_${userId || 'guest_' + +new Date()}"}`
+      }
+      return [tempObj]
     }
   },
   actions: {
