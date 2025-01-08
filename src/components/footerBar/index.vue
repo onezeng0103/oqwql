@@ -75,6 +75,8 @@
   ></uni-tabbar>
 </template>
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
+console.log(route.path)
 </script>

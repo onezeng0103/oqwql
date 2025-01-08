@@ -119,7 +119,7 @@ const formData = ref({
 const flag = ref(false)
 const time = ref(0)
 const send = () => {
-  // 邮箱发送验证码
+  // 发送验证码
   if (formData.value.email == '') {
     showToast('请输入邮箱')
     return

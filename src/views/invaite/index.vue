@@ -268,7 +268,6 @@ const VITE_APP_EXCHANGE_NAME = import.meta.env.VITE_APP_EXCHANGE_NAME
 const QRCodeIMG = ref()
 const getQR = (address) => {
   console.log(address)
-
   if (address) {
     QRCode.toDataURL(address, {
       version: '',

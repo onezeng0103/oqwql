@@ -82,6 +82,7 @@
               "
             >
               <uni-button
+                @click="router.push('/recharge')"
                 class="fui-button"
                 style="
                   width: 5rem;
@@ -94,7 +95,7 @@
                   font-size: 0.75rem;
                   color: rgb(255, 255, 255);
                 "
-                >充值/買幣</uni-button
+                >充值/买币</uni-button
               ></uni-view
             ></uni-view
           >

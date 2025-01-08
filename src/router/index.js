@@ -62,6 +62,11 @@ const router = createRouter({
       component: () => import('../views/secrety/newpwd.vue')
     },
     {
+      path: '/secrety/fundpwd',
+      name: 'fundpwd',
+      component: () => import('../views/secrety/fundpwd.vue')
+    },
+    {
       path: '/langList',
       name: 'langList',
       component: () => import('../views/langList/index.vue')
@@ -102,9 +107,19 @@ const router = createRouter({
       component: () => import('../views/withdraw/index.vue')
     },
     {
+      path: '/withdraw/record',
+      name: 'withdrawRecord',
+      component: () => import('../views/withdraw/record.vue')
+    },
+    {
       path: '/recharge',
       name: 'recharge',
       component: () => import('../views/recharge/index.vue')
+    },
+    {
+      path: '/recharge/record',
+      name: 'rechargeRecord',
+      component: () => import('../views/recharge/record.vue')
     },
     {
       path: '/wallet',

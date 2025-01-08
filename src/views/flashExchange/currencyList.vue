@@ -15,7 +15,7 @@
           ><uni-view class="fui-nav__header"
             ><uni-view class="fui-nav__left"
               ><uni-text
-                @click="handleClose"
+                @click="handleClose(undefined)"
                 class="fui-icon"
                 style="color: var(--content-primary); font-size: 1.75rem; font-weight: normal"
                 ><span></span></uni-text
@@ -33,7 +33,12 @@
             <div class="uni-scroll-view-content">
               <uni-view class="font-14 mt-15">币种名称</uni-view
               ><uni-view class="list"
-                ><uni-view class="item border-bottom" v-for="item in list" :key="item.coin">
+                ><uni-view
+                  class="item border-bottom"
+                  v-for="item in list"
+                  :key="item.coin"
+                  @click="handleClose(item)"
+                >
                   <img
                     class="currencyIcon"
                     :src="`/src/assets/img/${item.coin}.png`"
@@ -46,8 +51,13 @@
                     </uni-text>
                   </uni-view>
                   <uni-view class="fui-checkbox__input fui-checkbox__disabled check">
-                    <van-icon name="checked" color="#444444" />
-                    <van-icon name="checked" color="#3070ec" />
+                    <van-icon
+                      name="checked"
+                      color="#3070ec"
+                      size="20"
+                      v-if="info.coin == item.coin"
+                    />
+                    <van-icon name="checked" color="#444444" size="20" v-else />
                   </uni-view>
                 </uni-view>
               </uni-view>
@@ -64,11 +74,15 @@ const props = defineProps({
   list: {
     type: Array,
     default: []
+  },
+  info: {
+    type: String,
+    default: ''
   }
 })
 const emits = defineEmits(['close'])
 
-const handleClose = () => {
-  emits('close')
+const handleClose = (value) => {
+  emits('close', value)
 }
 </script>

@@ -97,3 +97,4 @@ export const updateUserWithdrawAddress = (params) =>
 
 // 提现地址列表
 export const getWithdrawAddressList = (params) => post('/api/user/withdrawAddress', params)
+export const getTexChangeListApi = () => post('/api/texchange/list?pageNum=1&pageSize=1000')

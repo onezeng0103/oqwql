@@ -23,6 +23,14 @@
 }
 .flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxL .flashExchangeCurrencyBox {
   justify-content: flex-start;
+  align-items: center;
+  .item {
+    display: flex;
+    align-items: center;
+    .flex {
+      align-items: center;
+    }
+  }
 }
 .flashExchangeWrap .flashExchangeCompareBox .flashExchangeCompareBoxM {
   position: relative;

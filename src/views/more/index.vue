@@ -73,7 +73,7 @@
               ><span>基础</span></uni-text
             ></uni-view
           ><uni-view class="menu-box"
-            ><uni-view class="menu-item"
+            ><uni-view class="menu-item" @click="router.push('/withdraw')"
               ><uni-view class="image-box">
                 <img
                   src="../../assets/img/payouts-dark.png"
@@ -81,7 +81,7 @@
                   style="height: 30px"
                 /> </uni-view
               ><uni-text class="font-12 color-black"><span>提现</span></uni-text></uni-view
-            ><uni-view class="menu-item"
+            ><uni-view class="menu-item" @click="router.push('/recharge')"
               ><uni-view class="image-box">
                 <img
                   src="../../assets/img/recharge-dark.png"
@@ -89,7 +89,7 @@
                   style="height: 30px"
                 /> </uni-view
               ><uni-text class="font-12 color-black"><span>充值</span></uni-text></uni-view
-            ><uni-view class="menu-item"
+            ><uni-view class="menu-item" @click="router.push('/invaite')"
               ><uni-view class="image-box" type="invite" @click="router.push('/invaite')"
                 ><img
                   src="../../assets/img/invite-white.png"

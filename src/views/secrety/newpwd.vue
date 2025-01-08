@@ -40,9 +40,7 @@
         ></uni-view
       ><uni-view class="label-box"
         ><uni-view class="text-cell"
-          ><uni-text class="font-12 color-gray"
-            ><span>原登入密码{{ form.oldPwd }}</span></uni-text
-          ></uni-view
+          ><uni-text class="font-12 color-gray"><span>原登入密码</span></uni-text></uni-view
         ><uni-view class="input-box"
           ><uni-input
             ><div class="uni-input-wrapper">

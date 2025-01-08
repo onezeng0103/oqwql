@@ -42,7 +42,8 @@
             ><span></span></uni-text
           ></uni-view
         ></uni-view
-      ><uni-view
+      >
+      <uni-view
         class="container-box-cell flex align-center justify-between"
         @click="handlePush('phone')"
         ><uni-view class="cell-left flex align-center"
@@ -56,9 +57,10 @@
             style="color: var(--content-tertiary); font-size: 1.0625rem; font-weight: normal"
             ><span></span></uni-text
           ></uni-view
-        ></uni-view
-      ><uni-view class="container-box-line"></uni-view
-      ><uni-view
+        >
+      </uni-view>
+      <uni-view class="container-box-line"></uni-view>
+      <uni-view
         class="container-box-cell flex align-center justify-between"
         @click="router.push('/secrety/newpwd')"
         ><uni-view class="cell-left flex align-center"
@@ -69,9 +71,25 @@
             style="color: var(--content-tertiary); font-size: 1.0625rem; font-weight: normal"
             ><span></span></uni-text
           ></uni-view
-        ></uni-view
-      ></uni-view
-    ></uni-view
+        >
+      </uni-view>
+      <uni-view
+        class="container-box-cell flex align-center justify-between"
+        @click="router.push('/secrety/fundpwd')"
+        ><uni-view class="cell-left flex align-center"
+          ><uni-text class="font-14 color-black"><span>提现密码</span></uni-text></uni-view
+        ><uni-view class="flex align-center justify-end cell-right">
+          <uni-text class="font-14 color-gray" v-if="!userTardPwd"><span>未设置</span></uni-text>
+
+          <uni-text
+            class="fui-icon"
+            style="color: var(--content-tertiary); font-size: 1.0625rem; font-weight: normal"
+          >
+            <span></span></uni-text
+          ></uni-view
+        >
+      </uni-view>
+    </uni-view></uni-view
   >
 </template>
 <script setup>
@@ -81,6 +99,9 @@ const router = useRouter()
 const userStore = useUserStore()
 const user = computed(() => {
   return userStore.userInfo.user
+})
+const userTardPwd = computed(() => {
+  return userStore.userInfo.detail?.userTardPwd
 })
 const handlePush = (type) => {
   router.push(`/secrety/phoneAuth?type=${type}`)
