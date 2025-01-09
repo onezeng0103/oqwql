@@ -28,7 +28,7 @@
                       <uni-view
                         class="fui-tabs__item"
                         v-for="(item, index) in tabList"
-                        @click="currentIndex = index"
+                        @click="changeTabs(item)"
                         :key="item.key"
                         id="fui_b10m"
                       >
@@ -38,7 +38,7 @@
                             style="font-size: 0.9375rem; font-weight: normal; transform: scale(1)"
                             :style="{
                               color:
-                                index === currentIndex
+                                item.key === currentIndex
                                   ? 'var(--color-text-black)'
                                   : 'var(--color-text-gray)'
                             }"
@@ -56,25 +56,47 @@
       </uni-view>
     </uni-view>
   </uni-view>
+  <component :is="cmp" />
 </template>
 <script setup>
+import Overview from './component/overview.vue'
+import Capital from './component/capital.vue'
+import Money from './component/money.vue'
+import Contract from './component/contract.vue'
 const tabList = ref([
   {
     name: '总览',
-    key: 'overview'
+    key: 'Overview',
+    component: Overview
   },
   {
     name: '资金',
-    key: 'capital'
+    key: 'Capital',
+    component: Capital
   },
   {
     name: '理财',
-    key: 'money'
+    key: 'Money',
+    component: Money
   },
   {
     name: '合约',
-    key: 'contract'
+    key: 'Contract',
+    component: Contract
   }
 ])
-const currentIndex = ref(0)
+const currentIndex = ref('Overview')
+const cmp = ref(Overview)
+const changeTabs = (value) => {
+  currentIndex.value = value.key
+  cmp.value = value.component
+}
 </script>
+<style lang="scss" scoped>
+.nav-bar {
+  width: 100%;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+  background: var(--color-gray-bg);
+}
+</style>

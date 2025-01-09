@@ -26,7 +26,7 @@
               ><span>{{ t('selectLanguage') }}</span></uni-text
             ></uni-view
           ><uni-view class="fui-nav__right"></uni-view></uni-view></uni-view></uni-view
-    ><uni-view class="fui-list__wrap" style="padding-bottom: 50px"
+    ><uni-view class="fui-list__wrap"
       ><uni-view class="fui-list__container"
         ><uni-view
           class="fui-list__border-top fui-list__border-color"
@@ -37,19 +37,20 @@
           :key="index"
           @click="setLanguage(item)"
           class="fui-list__cell fui-highlight"
-          :style="{ color: current === item.dictValue ? 'var(--color-text-green)' : '' }"
           style="
+            display: flex;
+            justify-content: space-between;
             padding: 1rem;
             background: rgb(0, 0, 0);
             margin-top: 0px;
             margin-bottom: 0px;
             border-radius: 0px;
           "
-          >{{ item.remark
-          }}<uni-view
-            class="fui-cell__border-bottom fui-cell__border-color"
-            style="left: 1rem; right: 0px"
-          ></uni-view>
+          ><uni-view>{{ item.remark }}</uni-view>
+          <uni-view>
+            <van-icon name="checked" color="#3070ec" size="20" v-if="current === item.dictValue" />
+            <van-icon name="checked" color="#444444" size="20" v-else />
+          </uni-view>
         </uni-view>
       </uni-view>
     </uni-view>
