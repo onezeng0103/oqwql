@@ -135,6 +135,16 @@ const router = createRouter({
       path: '/helpDetail/:id',
       name: 'HelpDetail',
       component: () => import('../views/help/helpDetail.vue')
+    },
+    {
+      path: '/exchange',
+      name: 'exchange',
+      component: () => import('../views/exchange/index.vue')
+    },
+    {
+      path: '/cashflow',
+      name: 'cashflow',
+      component: () => import('../views/cashflow/index.vue')
     }
   ]
 })

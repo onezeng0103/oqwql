@@ -12,10 +12,12 @@ declare module 'vue' {
     PhonePopup: typeof import('./src/components/phonePopup/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VanCountDown: typeof import('vant/es')['CountDown']
     VanIcon: typeof import('vant/es')['Icon']
     VanNoticeBar: typeof import('vant/es')['NoticeBar']
     VanPopup: typeof import('vant/es')['Popup']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
+    VanUploader: typeof import('vant/es')['Uploader']
   }
 }
