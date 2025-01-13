@@ -7,10 +7,7 @@ let _axios = null
 /**
  * 初始化
  */
-// export const baseURL = __config._BASE_API
-export const baseURL = 'https://api.cdex.top'
-
-// export const initAxios = () => {
+export const baseURL = import.meta.env.VITE_APP_BASE_API
 if (!_axios) {
   _axios = axios.create({
     // 默认请求连接
