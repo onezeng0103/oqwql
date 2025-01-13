@@ -27,7 +27,6 @@
             ></uni-view
           ><uni-view class="fui-nav__right"></uni-view></uni-view></uni-view
     ></uni-view>
-
     <uni-view class="cash-container"
       ><uni-view class="tab-box" id="tabBox"
         ><uni-scroll-view
@@ -83,16 +82,24 @@
           </div></uni-scroll-view
         >
       </uni-view>
-      <recharge :rechargeList="rechargeList" />
+      <NoData2 v-if="rowList.length === 0" />
+      <recharge :rechargeList="rowList" v-if="activeIndex === 'recharge'" />
+      <withdraw :withdrawList="rowList" v-if="activeIndex === 'withdraw'" />
+      <finance :financeList="rowList" v-if="activeIndex === 'finance'" />
+      <loan :loanList="rowList" v-if="activeIndex === 'loan'" />
     </uni-view>
   </uni-view>
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
-import { getRechargeList } from '@/api/account'
-import { priceFormat } from '@/utils/decimal'
+import { getRechargeList, getWithdrawList } from '@/api/account'
+import { getLoanOrderList } from '@/api/loan'
+import { investmentList } from '@/api/financial/index'
 import { _timeFormat } from '@/utils/public'
 import recharge from './component/recharge.vue'
+import withdraw from './component/withdraw.vue'
+import finance from './component/finance.vue'
+import loan from './component/loan.vue'
 const router = useRouter()
 const list = ref([
   {
@@ -112,15 +119,47 @@ const list = ref([
     type: 'loan'
   }
 ])
+const rowList = ref([])
 const activeIndex = ref('recharge')
 const handleChange = (value) => {
+  rowList.value = []
+  switch (value.type) {
+    case 'recharge':
+      getRechargeListFun()
+      break
+    case 'withdraw':
+      getWithdrawListFun()
+      break
+    case 'finance':
+      getFinanceListFun()
+      break
+    case 'loan':
+      getLoanListFun()
+      break
+  }
   activeIndex.value = value.type
 }
-const rechargeList = ref([])
 const getRechargeListFun = () => {
   let str = '?pageNum=1&pageSize=100000'
   getRechargeList(str).then((res) => {
-    rechargeList.value = res.rows
+    rowList.value = res.rows
+  })
+}
+const getWithdrawListFun = () => {
+  let str = '?pageNum=1&pageSize=100000'
+  getWithdrawList(str).then((res) => {
+    rowList.value = res.rows
+  })
+}
+const getFinanceListFun = () => {
+  investmentList(1, 100000).then((res) => {
+    rowList.value = res.rows
+  })
+}
+const getLoanListFun = () => {
+  let str = 'pageNum=1&pageSize=100000'
+  getLoanOrderList(str).then((res) => {
+    rowList.value = res.rows
   })
 }
 onMounted(() => {

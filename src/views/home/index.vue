@@ -47,13 +47,7 @@
                   height="100%"
                   src="../../assets/img/customer-dark.png"
                   draggable="false"
-                /> </uni-view
-              ><uni-view class="bar-button">
-                <img
-                  width="100%"
-                  height="100%"
-                  src="../../assets/img/notify-dark.png"
-                  draggable="false" /></uni-view></uni-view></uni-view></uni-view></uni-view></uni-view
+                /> </uni-view></uni-view></uni-view></uni-view></uni-view></uni-view
     ><uni-view class="page_main">
       <uni-view class="property">
         <template v-if="isSign">
@@ -65,7 +59,7 @@
           <uni-view class="property_con">
             <uni-view class="property_con_left notranslate">
               <uni-text class="font-18 color-black font-weight notranslate">
-                <span>40,241.15</span>
+                <span>{{ _numberWithCommas(allSum) }}</span>
               </uni-text>
               <uni-text class="font-12 color-gray notranslate">
                 <span>≈$40,194.07</span>
@@ -185,7 +179,6 @@
       </van-notice-bar>
       <uni-view class="content_wrap"
         ><uni-scroll-view
-          data-v-4c7cfa9d=""
           class="fui-tabs__scrollbox"
           style="background: var(--white); z-index: 1; top: auto"
         >
@@ -195,14 +188,10 @@
               style="overflow: auto hidden"
             >
               <div class="uni-scroll-view-content">
-                <uni-view data-v-4c7cfa9d="" class="fui-scroll__view"
-                  ><uni-view data-v-4c7cfa9d="" class="fui-tabs__item" id="fui_4651"
-                    ><uni-view
-                      data-v-4c7cfa9d=""
-                      class="fui-tabs__text-wrap"
-                      style="height: 2.0625rem"
+                <uni-view class="fui-scroll__view"
+                  ><uni-view class="fui-tabs__item" id="fui_4651"
+                    ><uni-view class="fui-tabs__text-wrap" style="height: 2.0625rem"
                       ><uni-view
-                        data-v-4c7cfa9d=""
                         class="fui-tabs__text"
                         style="
                           font-size: 0.875rem;
@@ -213,13 +202,9 @@
                         >自选
                       </uni-view></uni-view
                     ></uni-view
-                  ><uni-view data-v-4c7cfa9d="" class="fui-tabs__item" id="fui_b9z9"
-                    ><uni-view
-                      data-v-4c7cfa9d=""
-                      class="fui-tabs__text-wrap"
-                      style="height: 2.0625rem"
+                  ><uni-view class="fui-tabs__item" id="fui_b9z9"
+                    ><uni-view class="fui-tabs__text-wrap" style="height: 2.0625rem"
                       ><uni-view
-                        data-v-4c7cfa9d=""
                         class="fui-tabs__text"
                         style="
                           font-size: 0.875rem;
@@ -230,13 +215,9 @@
                         >涨幅榜
                       </uni-view></uni-view
                     ></uni-view
-                  ><uni-view data-v-4c7cfa9d="" class="fui-tabs__item" id="fui_ap68"
-                    ><uni-view
-                      data-v-4c7cfa9d=""
-                      class="fui-tabs__text-wrap"
-                      style="height: 2.0625rem"
+                  ><uni-view class="fui-tabs__item" id="fui_ap68"
+                    ><uni-view class="fui-tabs__text-wrap" style="height: 2.0625rem"
                       ><uni-view
-                        data-v-4c7cfa9d=""
                         class="fui-tabs__text"
                         style="
                           font-size: 0.875rem;
@@ -247,13 +228,9 @@
                         >跌幅榜
                       </uni-view></uni-view
                     ></uni-view
-                  ><uni-view data-v-4c7cfa9d="" class="fui-tabs__item" id="fui_85zm"
-                    ><uni-view
-                      data-v-4c7cfa9d=""
-                      class="fui-tabs__text-wrap"
-                      style="height: 2.0625rem"
+                  ><uni-view class="fui-tabs__item" id="fui_85zm"
+                    ><uni-view class="fui-tabs__text-wrap" style="height: 2.0625rem"
                       ><uni-view
-                        data-v-4c7cfa9d=""
                         class="fui-tabs__text"
                         style="
                           font-size: 0.875rem;
@@ -539,6 +516,8 @@ import { useUserStore } from '@/store/user/index'
 import { useMainStore } from '@/store/index.js'
 import { publiceNotice } from '@/api/common/index.js'
 import { dispatchCustomEvent } from '@/utils'
+import { priceFormat } from '@/utils/decimal.js'
+import { _numberWithCommas } from '@/utils/public'
 import LeftPopup from './component/leftPopup.vue'
 
 const router = useRouter()
@@ -561,6 +540,87 @@ const publiceNoticeFun = async () => {
 const handleKeFu = () => {
   dispatchCustomEvent('event_serviceChange')
 }
+// 用户余额信息
+const { asset } = storeToRefs(userStore)
+const getDetail = (item) => {
+  let obj = {}
+  obj['keyong'] = priceFormat(item.availableAmount)
+  obj['zhanyong'] = priceFormat(item.occupiedAmount)
+
+  obj['zhehe'] = priceFormat(item.exchageAmount)
+  if (item.symbol == 'usdt') {
+    obj['icon'] = 'usdt'
+    obj['loge'] = item.loge
+    obj['title'] = 'USDT'
+  } else {
+    obj['loge'] = item.loge
+    obj['title'] = item.symbol?.replace('usdt', '').trim().toLocaleUpperCase()
+    obj['icon'] = item.symbol?.replace('usdt', '').trim()
+  }
+  return obj
+}
+
+//获取平台资产信息
+const getPlatform = computed(() => {
+  let list = []
+  asset.value.forEach((item, index) => {
+    if (item.type == 1) {
+      list.push(getDetail(item))
+    }
+  })
+
+  return list
+})
+//计算平台余额
+const platformSum = computed(() => {
+  let sum = 0
+  for (let i = 0; i < getPlatform.value.length; i++) {
+    sum += Number(getPlatform.value[i].zhehe)
+  }
+  return priceFormat(sum)
+})
+//获取理财资产信息
+const getFinanc = computed(() => {
+  let list = []
+  asset.value.forEach((item, index) => {
+    if (item.type == 2) {
+      list.push(getDetail(item))
+    }
+  })
+  return list
+})
+//计算理财余额
+const financSum = computed(() => {
+  let sum = 0
+  for (let i = 0; i < getFinanc.value.length; i++) {
+    sum += Number(getFinanc.value[i].zhehe)
+  }
+  return priceFormat(sum)
+})
+//获取合约资产信息
+const getContarct = computed(() => {
+  let list = []
+  asset.value.forEach((item, index) => {
+    if (item.type == 3) {
+      list.push(getDetail(item))
+    }
+  })
+  return list
+})
+//计算合约余额
+const contractSum = computed(() => {
+  let sum = 0
+  for (let i = 0; i < getContarct.value.length; i++) {
+    sum += Number(getContarct.value[i].zhehe)
+  }
+  return priceFormat(sum)
+})
+// 计算所有余额
+const allSum = computed(() => {
+  return priceFormat(
+    Number(platformSum.value) + Number(financSum.value) + Number(contractSum.value)
+  )
+})
 onMounted(() => {
   publiceNoticeFun()
 })

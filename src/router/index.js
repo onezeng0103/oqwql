@@ -145,6 +145,36 @@ const router = createRouter({
       path: '/cashflow',
       name: 'cashflow',
       component: () => import('../views/cashflow/index.vue')
+    },
+    {
+      path: '/livecoin',
+      name: 'livecoin',
+      component: () => import('../views/livecoin/index.vue')
+    },
+    {
+      path: '/livecoin/subscribe/:id',
+      name: 'subscribe',
+      component: () => import('../views/livecoin/subscribe.vue')
+    },
+    {
+      path: '/livecoin/eaorders',
+      name: 'eaorders',
+      component: () => import('../views/livecoin/eaorders.vue')
+    },
+    {
+      path: '/store',
+      name: 'store',
+      component: () => import('../views/store/index.vue')
+    },
+    {
+      path: '/trade',
+      name: 'trade',
+      component: () => import('../views/trade/index.vue')
+    },
+    {
+      path: '/contract',
+      name: 'contract',
+      component: () => import('../views/contract/index.vue')
     }
   ]
 })

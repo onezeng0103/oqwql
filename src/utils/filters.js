@@ -1,6 +1,5 @@
 import days from '@/plugin/dayjs'
 import { _sub, _mul } from '@/utils/decimal'
-import { _t18 } from '@/utils/public'
 import { useMainStore } from '@/store'
 /**
  *
@@ -16,8 +15,7 @@ export const timeOfreceipt = (type, day, creatime) => {
         .add(day ? day : 0, 'day')
         .format('DD/MM/YYYY')
     case 2:
-      // 每日结算
-      return _t18(`daily_settlement`)
+      return '每日结算'
     case 3:
       const mainStore = useMainStore()
       return days(creatime)
@@ -40,19 +38,19 @@ export const investmentStatus = (type) => {
       // 持仓中
       return {
         color: '#2654FF',
-        name: _t18(`In_position`)
+        name: '持仓中'
       }
     case 1:
       // 已结算
       return {
         color: '#838B9C',
-        name: _t18(`Settled`)
+        name: '已结算'
       }
     case 2:
       // 已赎回
       return {
         color: '#17AC74',
-        name: _t18(`host_redeemed`)
+        name: '已赎回'
       }
 
     default:

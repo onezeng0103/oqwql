@@ -13,7 +13,7 @@ const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
 document.title = VITE_APP_TITLE
 const route = useRoute()
 const isShow = computed(() => {
-  const list = ['/', '/wallet']
+  const list = ['/', '/store', '/trade', '/contract', '/wallet']
   return list.includes(route.path)
 })
 /**

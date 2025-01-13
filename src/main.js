@@ -11,11 +11,13 @@ import 'vant/lib/index.css'
 import { useTradeStore } from '@/store/trade/index'
 import { useMainStore } from '@/store/index.js'
 import NoData from './components/noData/index.vue'
+import NoData2 from './components/noData2/index.vue'
 const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
 pinia.use(piniaPluginPersistedstate)
 app.component('NoData', NoData)
+app.component('NoData2', NoData2)
 app.use(router)
 app.use(Vant)
 app.use(Icon)

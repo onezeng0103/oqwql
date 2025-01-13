@@ -18,12 +18,12 @@
                 ><div class="uni-scroll-view">
                   <div class="uni-scroll-view" style="overflow: hidden auto">
                     <div class="uni-scroll-view-content">
-                      <uni-view class="cell" v-for="(item, index) in rechargeList" :key="index"
+                      <uni-view class="cell" v-for="(item, index) in loanList" :key="index"
                         ><uni-view class="row"
                           ><uni-text class="font-14 color-black font-weight"
-                            ><span>充值</span></uni-text
+                            ><span>借贷</span></uni-text
                           ><uni-text class="font-14 color-black font-weight"
-                            ><span>+ {{ priceFormat(item.amount) }} {{ item.type }}</span></uni-text
+                            ><span>{{ priceFormat(item.amount) }} {{ item.type }}</span></uni-text
                           ></uni-view
                         ><uni-view class="row"
                           ><uni-text class="font-12 color-gray"
@@ -55,7 +55,7 @@
 import { priceFormat } from '@/utils/decimal'
 import { _timeFormat } from '@/utils/public'
 const props = defineProps({
-  rechargeList: {
+  loanList: {
     type: Array,
     default: () => []
   }

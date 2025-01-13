@@ -25,24 +25,29 @@
                 >
                   <div class="uni-scroll-view-content" style="">
                     <uni-view class="fui-scroll__view">
-                      <uni-view class="fui-tabs__item" id="fui_b10m">
+                      <uni-view
+                        class="fui-tabs__item"
+                        @click="changeTabs({ key: 'General', keyStr: '总览', component: General })"
+                      >
                         <uni-view class="fui-tabs__text-wrap" style="height: 2.6875rem">
                           <uni-view
                             class="fui-tabs__text"
                             style="font-size: 0.9375rem; font-weight: normal; transform: scale(1)"
                             :style="{
-                              color: 'var(--color-text-black)'
+                              color:
+                                'General' === currentIndex
+                                  ? 'var(--color-text-black)'
+                                  : 'var(--color-text-gray)'
                             }"
                             >总览
                           </uni-view>
                         </uni-view>
                       </uni-view>
-                      <!-- <uni-view
+                      <uni-view
                         class="fui-tabs__item"
                         v-for="(item, index) in tabList"
                         @click="changeTabs(item)"
                         :key="item.key"
-                        id="fui_b10m"
                       >
                         <uni-view class="fui-tabs__text-wrap" style="height: 2.6875rem">
                           <uni-view
@@ -57,7 +62,7 @@
                             >{{ item.keyStr }}
                           </uni-view>
                         </uni-view>
-                      </uni-view> -->
+                      </uni-view>
                     </uni-view>
                   </div>
                 </div>
@@ -75,6 +80,7 @@
     :financSum="financSum"
     :contractSum="contractSum"
     :tabList="tabList"
+    @changeTabs="changeTabs"
   />
 </template>
 <script setup>
@@ -82,16 +88,15 @@ import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/store/user/index'
 import { useMainStore } from '@/store'
 import { _numberWithCommas } from '@/utils/public'
-
 import { _add } from '@/utils/decimal'
-import { DIFF_FREEZE_ASSETS } from '@/config/index'
 import { priceFormat } from '@/utils/decimal.js'
+import General from './component/general.vue'
 import Overview from './component/overview.vue'
 import Money from './component/money.vue'
 import Contract from './component/contract.vue'
 const userStore = useUserStore()
-const currentIndex = ref('Overview')
-const cmp = ref(Overview)
+const currentIndex = ref('General')
+const cmp = ref(General)
 const mainStore = useMainStore()
 const getIsMock = computed(() => userStore.userInfo.user?.type === '2')
 const tabList = computed(() => {
@@ -118,7 +123,20 @@ const tabList = computed(() => {
 })
 const changeTabs = (value) => {
   currentIndex.value = value.key
-  cmp.value = value.component
+  switch (value.key) {
+    case 'Overview':
+      cmp.value = Overview
+      break
+    case 'Money':
+      cmp.value = Money
+      break
+    case 'Contract':
+      cmp.value = Contract
+      break
+    default:
+      cmp.value = General
+      break
+  }
 }
 
 // 用户余额信息
@@ -140,39 +158,7 @@ const getDetail = (item) => {
   }
   return obj
 }
-const assetDetails = computed(() => {
-  let list = []
-  asset.value.forEach((item) => {
-    if (
-      (item.type == 1 && currentIndex.value == 'Overview') ||
-      (item.type == 2 && currentIndex.value == 'Money') ||
-      (item.type == 3 && currentIndex.value == 'Contract')
-    ) {
-      let obj = {}
-      obj['keyong'] = priceFormat(item.availableAmount)
-      // rxce冻结金额=占用+冻结
-      if (DIFF_FREEZE_ASSETS.includes(__config._APP_ENV)) {
-        let temp = 0
-        obj['zhanyong'] = priceFormat(_add(item.occupiedAmount, temp))
-      } else {
-        obj['zhanyong'] = priceFormat(item.occupiedAmount)
-      }
-      obj['zhehe'] = priceFormat(item.exchageAmount)
-      if (item.symbol == 'usdt') {
-        obj['icon'] = 'usdt'
-        obj['loge'] = item.loge
-        obj['title'] = 'USDT'
-        list.unshift(obj)
-      } else {
-        obj['loge'] = item.loge
-        obj['title'] = item.symbol?.replace('usdt', '').trim().toLocaleUpperCase()
-        obj['icon'] = item.symbol?.replace('usdt', '').trim()
-        list.push(obj)
-      }
-    }
-  })
-  return list
-})
+
 //获取平台资产信息
 const getPlatform = computed(() => {
   let list = []
