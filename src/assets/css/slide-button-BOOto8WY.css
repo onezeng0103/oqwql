@@ -1,0 +1,25 @@
+.slide-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.slide-button .slide-move-block {
+  position: absolute;
+  transform: translate(var(--translateX));
+  z-index: 1;
+  transition: all 0.25s;
+}
+.slide-button .slide-btn-box {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.slide-button .slide-btn-box .context {
+  font-size: 0.8125rem;
+}

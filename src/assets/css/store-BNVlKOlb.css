@@ -1,0 +1,284 @@
+.store {
+  width: 100%;
+  height: auto;
+  background-color: var(--color-gray-bg);
+}
+.store .nav-tab {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 0.42188rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.store .nav-tab-left {
+  width: calc(100% - 2.75rem);
+  height: 2.75rem;
+  overflow: hidden;
+}
+.store .nav-tab-right {
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.store .nav-tab-right uni-image {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+.store-container {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 0.9375rem 0.9375rem 0 0;
+  overflow: hidden;
+}
+.store-container-head,
+.store-container-head .head-top,
+.store-container-head .head-bottom {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.store-container-head .head-top,
+.store-container-head .head-bottom {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.store-container-head .head-top .edit-image,
+.store-container-head .head-bottom .edit-image {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.store-container-head .head-bottom {
+  margin-top: 0.9375rem;
+}
+.store-container-head .head-bottom .sort-menu {
+  width: 100%;
+  height: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.store-container-head .head-bottom .sort-menu-cell {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.store-container-head .head-bottom .sort-menu-cell .item {
+  display: flex;
+  align-items: center;
+  margin-right: 0.625rem;
+}
+.store-container-head .head-bottom .sort-menu-cell .item uni-image {
+  width: 0.5rem;
+  height: 0.75rem;
+  margin-left: 0.3125rem;
+}
+.store-container-head .head-bottom .sort-menu-cell:nth-of-type(2) {
+  width: 60%;
+  justify-content: flex-end;
+}
+.store-container-head .head-bottom .sort-menu-cell:nth-of-type(2) .item {
+  width: 50%;
+  margin-right: 0;
+  justify-content: flex-end !important;
+}
+.store-container .store-container-scrollview {
+  width: 100%;
+}
+.store-container .store-container-scrollview .card-list {
+  width: 100%;
+  height: auto;
+  padding-bottom: 9.375rem;
+  box-sizing: border-box;
+}
+.store-container .store-container-scrollview .card-list-box {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 0.9375rem 0.9375rem;
+  box-sizing: border-box;
+}
+.store-container .store-container-scrollview .card-list-item {
+  display: inline-flex;
+  flex-direction: column;
+  width: calc(50% - 0.5rem);
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  box-sizing: border-box;
+  background-color: var(--white);
+  border: 0.0625rem solid var(--color-gray-bg);
+  border-radius: 0.5rem;
+  margin-top: 0.9375rem;
+}
+.store-container .store-container-scrollview .card-list-item ._row {
+  width: 100%;
+  min-height: 1.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.store-container .store-container-scrollview .card-list-item ._row .check-box {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.store-container .store-container-scrollview .card-list-item ._row .check-box uni-image {
+  width: 1.1875rem;
+  height: 1.1875rem;
+  border-radius: 50%;
+}
+.store-container .store-container-scrollview .card-list .coin-item {
+  width: 100%;
+  height: auto;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.9375rem;
+  box-sizing: border-box;
+}
+.store-container .store-container-scrollview .card-list .coin-item-cell {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.store-container .store-container-scrollview .card-list .coin-item-cell ._row {
+  display: flex;
+  align-items: center;
+}
+.store-container .store-container-scrollview .card-list .coin-item-cell:nth-of-type(2) {
+  width: 60%;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.store-container .store-container-scrollview .card-list .coin-item-cell:nth-of-type(2) .item {
+  width: 50%;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.store-container
+  .store-container-scrollview
+  .card-list
+  .coin-item-cell:nth-of-type(2)
+  .item
+  .tag-box {
+  width: 3.75rem;
+  height: 1.6875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3125rem;
+}
+.store-container
+  .store-container-scrollview
+  .card-list
+  .coin-item-cell:nth-of-type(2)
+  .item
+  .tag-red {
+  background-color: var(--red);
+}
+.store-container
+  .store-container-scrollview
+  .card-list
+  .coin-item-cell:nth-of-type(2)
+  .item
+  .tag-red
+  .color-white {
+  color: #f1f1f1;
+}
+.store-container
+  .store-container-scrollview
+  .card-list
+  .coin-item-cell:nth-of-type(2)
+  .item
+  .tag-green {
+  background-color: var(--green);
+}
+.store-container
+  .store-container-scrollview
+  .card-list
+  .coin-item-cell:nth-of-type(2)
+  .item
+  .tag-green
+  .color-white {
+  color: #f1f1f1;
+}
+.store-container .store-container-scrollview .add-button {
+  width: 100%;
+  height: auto;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title-bar {
+  width: 100%;
+  top: 0;
+  z-index: 100000;
+}
+.headers {
+  width: 100%;
+}
+.container-box,
+.list_body {
+  margin-top: 7.0625rem;
+}
+.line-header {
+  height: 1.875rem;
+  line-height: 1.875rem;
+  width: 100%;
+}
+.mr-20 {
+  margin-right: 1.25rem;
+}
+.m-15 {
+  margin: 0 0.9375rem;
+}
+.m-l-5 {
+  margin: 0 0.3125rem;
+}
+.pt-10 {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+}
+.plr-15 {
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+}
+.symbol_currency {
+  height: 1.5625rem;
+  line-height: 1.5625rem;
+  padding: 0.1875rem 0.9375rem;
+  border-radius: 0.3125rem;
+}
+.active {
+  background-color: #f8f8f8 !important;
+  color: #000 !important;
+  uni-text {
+    color: #000 !important;
+  }
+}
+.fui-tabs__item {
+  padding: 0 1.5625rem 0 0 !important;
+}

@@ -20,12 +20,17 @@ export default class CoinWebSocket {
   WS_READY_STATE_OPEN = 1
 
   constructor() {
-    let baseUrl = __config._BASE_WSS || (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname
-    if(baseUrl.search("://") == -1) {
-      baseUrl = (baseUrl.substr(0,1) == '/') ? baseUrl : '/'+ baseUrl
-      baseUrl = (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname + baseUrl
+    let baseUrl =
+      import.meta.env.VITE_APP_BASE_WSS ||
+      (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname
+    if (baseUrl.search('://') == -1) {
+      baseUrl = baseUrl.substr(0, 1) == '/' ? baseUrl : '/' + baseUrl
+      baseUrl =
+        (window.location.protocol == 'http:' ? 'ws://' : 'wss://') +
+        window.location.hostname +
+        baseUrl
     }
-	
+
     this.url = `${baseUrl}/ws`
     this.init()
   }

@@ -68,6 +68,9 @@ if (route.path == '/') {
   console.log(route.path)
 }
 const pathStr = ref(route.path)
+watch(route, (to) => {
+  pathStr.value = to.path
+})
 const handleClick = (path) => {
   pathStr.value = path
   router.push(path)

@@ -19,103 +19,83 @@ export const getConfig = (theme) => {
   }
 }
 
-import { _t18 } from '@/utils/public'
-
 /**
  * 分辨率
  */
 export const getIntervalList = () => {
   let tempList = [
-    // {
-    //   label: '1秒',
-    //   value: '1s'
-    // },
     {
-      label: `1${_t18('minute')}`,
-      value: '1m',
+      label: `1秒`,
+      value: '1M',
       interval: '1',
       key: 'ONE_MIN'
     },
-    // {
-    //   label: `3${_t18('minute', ['dev'])}`,
-    //   value: '3m',
-    //   interval: '3',
-    //   key: 'ONE_MIN'
-    // },
     {
-      label: `5${_t18('minute')}`,
-      value: '5m',
+      label: `5秒`,
+      value: '5M',
       interval: '5',
       key: 'FIVE_MIN',
       market: 'mt5'
     },
     {
-      label: `15${_t18('minute')}`,
-      value: '15m',
+      label: `15秒`,
+      value: '15M',
       interval: '15',
       key: 'FIFTEEN_MIN',
       market: 'mt5'
     },
     {
-      label: `30${_t18('minute')}`,
-      value: '30m',
+      label: `30秒`,
+      value: '30M',
       interval: '30',
       key: 'THIRTY_MIN',
       market: 'mt5'
     },
     {
-      label: `1${_t18('hour')}`,
-      value: '1h',
+      label: `1分钟`,
+      value: '1H',
       interval: '60',
       key: 'ONE_HOUR',
       market: 'mt5'
     },
     {
-      label: `2${_t18('hour')}`,
-      value: '2h',
+      label: `2分钟`,
+      value: '2H',
       interval: '120',
       key: 'TWO_HOUR'
     },
 
     {
-      label: `6${_t18('hour')}`,
-      value: '6h',
+      label: `6分钟`,
+      value: '6H',
       interval: '360',
       key: 'SIX_HOUR',
       isMore: true
     },
 
     {
-      label: `1${_t18('day')}`,
-      value: '1d',
+      label: `1天`,
+      value: '1D',
       interval: '1d',
       key: 'ONE_DAY',
       isMore: true,
       market: 'mt5'
     },
     {
-      label: `3${_t18('day')}`,
-      value: '3d',
+      label: `3天`,
+      value: '3D',
       interval: '3d',
       key: 'ONE_DAY',
       isMore: true
     },
     //周线
     {
-      label: _t18('weekly'),
-      value: '1w',
+      label: `1周`,
+      value: '1W',
       interval: 'W',
       key: 'ONE_WEEK',
       isMore: true,
       market: 'mt5'
-    },
-    //月线
-    {
-      label: _t18('month'),
-      value: '1M',
-      interval: 'M',
-      key: 'ONE_MON',
-      isMore: true
     }
   ]
   return tempList

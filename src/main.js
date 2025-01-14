@@ -9,9 +9,15 @@ import Vant from 'vant'
 import { Icon } from 'vant'
 import 'vant/lib/index.css'
 import { useTradeStore } from '@/store/trade/index'
+import { _initCoinWebSocket } from '@/plugin/socket/index.js'
+
 import { useMainStore } from '@/store/index.js'
 import NoData from './components/noData/index.vue'
 import NoData2 from './components/noData2/index.vue'
+/**
+ * 初始化socket
+ */
+_initCoinWebSocket()
 const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)

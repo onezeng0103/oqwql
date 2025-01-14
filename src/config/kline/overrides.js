@@ -1,37 +1,17 @@
-export const getOverrides = (theme) => {
+export const getOverrides = () => {
   var themes = {
-    light: {
-      up: '#4BBD83',
-      down: '#D62548',
-      bg: '#ffffff',
-      grid: '#F2F4F7',
-      cross: '#333',
-      border: '#f7f8fa',
-      text: '#7D8AA3',
-      line: '#ECECEC'
-    },
     dark: {
       up: '#4BBD83',
       down: '#D62548',
-      bg: '#202329',
+      bg: '#111111',
       grid: '#35393E',
       cross: '#999',
       border: '#35393E',
       text: '#999',
       line: '#35393E'
-    },
-	bit: {
-	  up: '#4BBD83',
-	  down: '#D62548',
-	  bg: '#ffffff',
-	  grid: '#F2F4F7',
-	  cross: '#333',
-	  border: '#f7f8fa',
-	  text: '#7D8AA3',
-	  line: '#ECECEC'
-	},
+    }
   }
-  var t = themes[theme]
+  var t = themes.dark
   return {
     volumePaneSize: 'medium', // 设置成交量面板的大小
 

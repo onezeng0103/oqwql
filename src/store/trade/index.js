@@ -4,7 +4,7 @@ import { getCoinListApi, getMt5Amount } from '@/api/trade/index.js'
 import { socketDict } from '@/config/dict'
 import { _div, _sub, _mul, priceFormat, _toFixed } from '@/utils/decimal'
 import { _coinWebSocket } from '@/plugin/socket/index'
-import { reactive } from 'vue'
+
 export const useTradeStore = defineStore('trade', {
   state: () => {
     return {
@@ -31,11 +31,7 @@ export const useTradeStore = defineStore('trade', {
       /**
        * 24小时成交
        */
-      klineTicker: reactive({}),
-      /**
-       * 跟单币种
-       */
-      optionList: []
+      klineTicker: reactive({})
     }
   },
   getters: {},
@@ -60,7 +56,6 @@ export const useTradeStore = defineStore('trade', {
      */
     async getCoinList() {
       const res = await getCoinListApi()
-      this.optionList = res.data.optionList
       let keyMap = {
         coinList: 'secondContractCoinList',
         currencyList: 'spotCoinList',
@@ -69,9 +64,13 @@ export const useTradeStore = defineStore('trade', {
       let tempAllCoinPriceInfo = {}
       this.secondContractCoinList.splice(0, this.secondContractCoinList.length)
       for (const key in keyMap) {
+        //强制清空本地 数组
+        this[keyMap[key]] = []
+
         if (Object.hasOwnProperty.call(res.data, key)) {
           const tempList = res.data[key]
 
+          console.log('当前列表', res.data[key])
           tempList.forEach((elem) => {
             elem.baseCoinUpperCase = elem.baseCoin.toLocaleUpperCase()
             elem.coinUpperCase = elem.coin.toLocaleUpperCase()
@@ -98,6 +97,9 @@ export const useTradeStore = defineStore('trade', {
               openPrice: priceFormat(elem.open),
               change: change,
               priceChangePercent: change
+              // volume24: '0.00',
+              // high24: '0.00',
+              // low24: '0.00'
             }
             // 国际黄金白银
             if (elem.coinType === 3) {
@@ -108,18 +110,21 @@ export const useTradeStore = defineStore('trade', {
               })
             }
           })
+
+          console.log('列表处理后', tempList)
         }
       }
+      console.log('store 交易', this.allCoinPriceInfo, tempAllCoinPriceInfo)
       Object.assign(this.allCoinPriceInfo, tempAllCoinPriceInfo)
 
       if (Object.keys(this.allCoinPriceInfo).length) {
+        console.log('存在币种进行 socket 订阅')
         // 当存在币种进行 socket 订阅
-        if (_coinWebSocket) {
-          _coinWebSocket.send({
-            op: socketDict.subscribe,
-            type: socketDict.DETAIL
-          })
-        }
+        _coinWebSocket.send({
+          op: socketDict.subscribe,
+          type: socketDict.DETAIL
+        })
+
         // 订阅事件
         this.token = PubSub.subscribe(socketDict.DETAIL, (key, data) => {
           // 处理接收到的数据
@@ -136,6 +141,12 @@ export const useTradeStore = defineStore('trade', {
             high: tempData.high,
             volume: tempData.vol
           }
+
+          // if (this.currentCoinList.includes(data.symbol) && data.origin != 'kline') {
+          //   console.log('detail', tempData, data)
+          //   return
+          // }
+
           if (this.allCoinPriceInfo[data.symbol]?.volume2) {
             tempObj.volume = this.allCoinPriceInfo[data.symbol]?.volume2
             tempObj.volume24 = this.allCoinPriceInfo[data.symbol]?.volume2
@@ -165,7 +176,9 @@ export const useTradeStore = defineStore('trade', {
               )
               tempObj.priceChangePercent =
                 Math.abs(priceChangePercent) < 0.01 ? '0.01' : priceChangePercent
+              // console.log('24小时change', data.symbol, tempObj.open, tempObj.priceChangePercent)
             }
+            // 实时change
             let tempChange = _toFixed(
               Math.abs(_mul(_div(_sub(tempObj.close, tempObj.open), tempObj.open), 100)),
               2

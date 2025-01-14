@@ -15,7 +15,7 @@ export default class ClientWebSocket {
   constructor(userId) {
     // 初始化
     let baseUrl =
-      __config._BASE_WSS ||
+      import.meta.env.VITE_APP_BASE_WSS ||
       (window.location.protocol == 'http:' ? 'ws://' : 'wss://') + window.location.hostname
     if (baseUrl.search('://') == -1) {
       baseUrl = baseUrl.substr(0, 1) == '/' ? baseUrl : '/' + baseUrl

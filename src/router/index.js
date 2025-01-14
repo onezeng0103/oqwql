@@ -172,9 +172,24 @@ const router = createRouter({
       component: () => import('../views/trade/index.vue')
     },
     {
+      path: '/trade/detail',
+      name: 'tradeDetail',
+      component: () => import('../views/trade/detail.vue')
+    },
+    {
+      path: '/trade/rules',
+      name: 'tradeRules',
+      component: () => import('../views/trade/rules.vue')
+    },
+    {
       path: '/contract',
       name: 'contract',
       component: () => import('../views/contract/index.vue')
+    },
+    {
+      path: '/editMine',
+      name: 'editMine',
+      component: () => import('../views/editMine/index.vue')
     }
   ]
 })
